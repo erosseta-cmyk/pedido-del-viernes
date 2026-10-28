@@ -59,6 +59,9 @@ svg.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;str
 .hero h1{font:700 clamp(1.55rem,4.6vw,2.3rem)/1.12 var(--f-d);margin:0;letter-spacing:-.02em;max-width:22ch;text-wrap:balance}
 .hero p{margin:0;color:var(--muted);max-width:56ch}
 @media (max-width:640px){.date{display:none}.hero{gap:12px;padding-top:14px}.trust div>span>span,.trust div>span>b+*{display:none}.trust div{padding:8px 12px}.trust b{font-size:.88rem}.hero p{font-size:.95rem}}
+.inst{display:inline-flex;align-items:center;gap:6px;font:600 .8rem var(--f);background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.inst svg{width:16px;height:16px}
+.insthelp{margin:12px 0 0;background:var(--accent-soft);border-radius:12px;padding:12px 14px;font-size:.9rem;line-height:1.4}
 .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .trust div{background:var(--soft);border-radius:12px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start;font-size:.86rem;line-height:1.3}
 .trust b{display:block;font-size:.9rem}
@@ -201,6 +204,7 @@ details.how ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
   <symbol id="i-shd" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v8L12 20l-8.5-4z"/><path d="M3.5 8 12 12l8.5-4M12 12v8"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
   <symbol id="i-srch" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.5-2-1.5-2.5-2.5l.8-1-1-2z"/></symbol>
 </svg>
@@ -210,8 +214,9 @@ details.how ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
 <header class="wrap">
   <div class="brand">
     <div class="logo"><span class="mark"><svg class="ic"><use href="#i-box"/></svg></span><span>Pedido del Viernes<small>por Esteban · San Miguel</small></span></div>
-    <span class="date" id="fecha"></span>
+    <span style="display:flex;gap:8px;align-items:center"><button class="inst" id="instBtn" hidden><svg class="ic"><use href="#i-dl"/></svg>Instalar app</button><span class="date" id="fecha"></span></span>
   </div>
+  <p class="insthelp" id="instHelp" hidden></p>
   <section class="hero">
     <h1>Precios de distribuidora, en la puerta de tu casa.</h1>
     <p>Cada viernes compro por mayor y te llevo tu pedido. Eliges aquí, me lo envías por WhatsApp y pagas por transferencia.</p>
@@ -449,6 +454,27 @@ let armed=false;$("clear").addEventListener("click",e=>{if(!armed){armed=true;e.
   cart={};ls.set("pdv-cart7",cart);newCode();$("receipt").hidden=true;armed=false;e.target.textContent="Vaciar pedido";totals();renderCart();render()});
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,1800)}
 window.addEventListener("hashchange",()=>{const k=(location.hash||"").replace("#","");if(CATS.some(c=>c[0]===k)&&k!==cur){cur=k;$("q").value="";render();toList()}});
+// instalar como app
+(function(){
+  const ua=navigator.userAgent, ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  const inApp=/WhatsApp|FBAN|FBAV|Instagram|Line\/|; wv\)/.test(ua);
+  const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+  const btn=$("instBtn"),help=$("instHelp");let ev=null;
+  if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+  if(standalone)return;
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();ev=e;btn.hidden=false});
+  window.addEventListener("appinstalled",()=>{btn.hidden=true;help.hidden=true});
+  if(ios||inApp)btn.hidden=false;
+  btn.addEventListener("click",async()=>{
+    if(ev){ev.prompt();const r=await ev.userChoice;if(r.outcome==="accepted")btn.hidden=true;ev=null;return}
+    help.hidden=false;
+    help.innerHTML=inApp?"<b>Para instalarla, ábrela en tu navegador:</b> toca los tres puntos o el ícono de compartir arriba y elige <b>“Abrir en Chrome”</b> (Android) o <b>“Abrir en Safari”</b> (iPhone). Ahí vuelve a tocar “Instalar app”."
+      :ios?(/CriOS|FxiOS|EdgiOS/.test(ua)?"<b>En iPhone se instala desde Safari:</b> copia el link, ábrelo en <b>Safari</b> y toca el botón <b>Compartir</b> (cuadrado con flecha) → <b>“Agregar a inicio”</b>."
+        :"<b>Para instalarla:</b> toca el botón <b>Compartir</b> de Safari (cuadrado con flecha, abajo) → <b>“Agregar a inicio”</b> → <b>Agregar</b>.")
+      :"<b>Para instalarla:</b> toca el menú <b>⋮</b> del navegador → <b>“Instalar app”</b> o <b>“Agregar a pantalla principal”</b>.";
+    help.scrollIntoView({block:"nearest"});
+  });
+})();
 render();totals();
 })();
 </script>
