@@ -1,4 +1,18 @@
 <title>Pedido del Viernes</title>
+<meta name="description" content="Precios de distribuidora con entrega a domicilio cada viernes. Pides hasta el jueves a las 12:00 y no pagas al pedir.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://erosseta-cmyk.github.io/pedido-del-viernes/">
+<meta property="og:title" content="Pedido del Viernes · Precios de distribuidora en tu casa">
+<meta property="og:description" content="Huevos, pollo, pescados, congelados, quesos y frutos secos. Pides hasta el jueves 12:00, no pagas al pedir y te lo llevo el viernes.">
+<meta property="og:image" content="https://erosseta-cmyk.github.io/pedido-del-viernes/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f6b4b">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="Pedido del Viernes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="format-detection" content="telephone=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +38,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 button,input,select{font-family:inherit}
@@ -292,8 +306,9 @@ const h=(location.hash||"").replace("#","");if(CATS.some(c=>c[0]===h))cur=h;
 const now=new Date();const f=new Date(now);f.setHours(0,0,0,0);f.setDate(f.getDate()+((5-f.getDay()+7)%7));
 const cut=new Date(f);cut.setDate(f.getDate()-1);cut.setHours(CIERRE_HORA,0,0,0);
 const LATE=now>=cut;if(LATE)f.setDate(f.getDate()+7);
-const fdate=f.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
-const fshort=f.toLocaleDateString("es-CL",{day:"numeric",month:"long"});
+const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const fshort=f.getDate()+" de "+MESES[f.getMonth()];
+const fdate="viernes "+fshort;
 $("fecha").textContent="Próxima entrega: "+fshort;
 $("tEntrega").textContent="Entrega el viernes "+fshort;$("tEntrega2").textContent=HORARIO+", en tu casa.";
 $("sCierre").textContent=CIERRE;
@@ -369,7 +384,7 @@ function totals(){let n=0,t=0,s=0;Object.keys(cart).forEach(id=>{n+=cart[id];t+=
   return{n,t,fee,F,s,ok:t>=MINIMO}}
 function orderText(){const{t,fee,F}=totals();let s=`Hola Esteban! Quiero hacer este pedido para el ${fdate}:\n`;
   const ids=Object.keys(cart);const cats=[...new Set(ids.map(id=>BY[id].cat))];
-  cats.forEach(c=>{s+=`\n*${c}*\n`;ids.filter(id=>BY[id].cat===c).forEach(id=>{const p=BY[id];s+=`• ${cart[id]} × ${p.n} (${p.u}) — ${clp(cart[id]*p.pv)} [${id}]\n`})});
+  cats.forEach(c=>{s+=`\n*${c}*\n`;ids.filter(id=>BY[id].cat===c).forEach(id=>{const p=BY[id];s+=`• ${cart[id]} × ${p.n} · ${p.u} — ${clp(cart[id]*p.pv)} [${id}]\n`})});
   s+=`\nProductos: ${clp(t)}\nDespacho: ${F.state==="ok"?clp(fee)+` (~${F.km} km)`:"a coordinar"}\n*Total: ${clp(t+fee)}${F.state==="ok"?"":" + despacho"}*\n`;
   const cm=$("cComuna").value;
   s+=`\nCódigo de pedido: ${code}\nPago: ${pago()==="mp"?"Mercado Pago (envíame el link)":"Transferencia"}\nNombre: ${$("cNombre").value.trim()}\nComuna: ${cm==="otra"?"Otra (a coordinar)":cm}\nDirección: ${$("cDir").value.trim()}\n`;return s}
@@ -428,6 +443,7 @@ $("copy").addEventListener("click",()=>{const{n,ok}=totals();if(!n){toast("Agreg
 let armed=false;$("clear").addEventListener("click",e=>{if(!armed){armed=true;e.target.textContent="¿Seguro?";setTimeout(()=>{armed=false;e.target.textContent="Vaciar pedido"},2500);return}
   cart={};ls.set("pdv-cart7",cart);newCode();$("receipt").hidden=true;armed=false;e.target.textContent="Vaciar pedido";totals();renderCart();render()});
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,1800)}
+window.addEventListener("hashchange",()=>{const k=(location.hash||"").replace("#","");if(CATS.some(c=>c[0]===k)&&k!==cur){cur=k;$("q").value="";render();toList()}});
 render();totals();
 })();
 </script>
