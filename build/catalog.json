@@ -507,7 +507,7 @@
 "sub": "Listo para servir",
 "n": "Carne desmechada casera Vida Estable 1,2 kg",
 "u": "Pouch",
-"pv": 18890,
+"pv": 21590,
 "cmp": null,
 "s": "A",
 "k": "Carne desmechada casera Vida Estable 1,2 kg",
@@ -2655,7 +2655,7 @@
 "sub": "Quesos en trozo",
 "n": "Queso de cabra Don Humberto de Ovalle",
 "u": "1 kg",
-"pv": 13690,
+"pv": 13190,
 "cmp": null,
 "s": "R",
 "k": "Queso de Cabra Don Humberto de Ovalle",
@@ -3521,7 +3521,7 @@
 "sub": "Aceites y aceitunas",
 "n": "Aceite maravilla Camilo Ferrón 10 l",
 "u": "Bidón",
-"pv": 27790,
+"pv": 28390,
 "cmp": null,
 "s": "A",
 "k": "Aceite maravilla Camilo Ferrón 10 L",
@@ -3534,7 +3534,7 @@
 "sub": "Aceites y aceitunas",
 "n": "Aceite maravilla Maxi Frits 10 l",
 "u": "Bidón",
-"pv": 29390,
+"pv": 30390,
 "cmp": null,
 "s": "A",
 "k": "Aceite maravilla Maxi Frits 10 L",
@@ -4024,5 +4024,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-10-27"
+"updated": "2026-10-28"
 }
