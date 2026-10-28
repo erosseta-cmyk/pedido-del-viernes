@@ -75,23 +75,14 @@ def fetch_P():
 
 
 def fetch_A():
-    """Lista oficial de Ártico: se pasa la página a líneas de texto y se buscan pares nombre/precio."""
+    """Lista oficial de Ártico: tabla con columnas categoría (o AGOTADO), nombre, marca, neto y precio con IVA."""
     page = get('https://articocongelados.cl/Lista-de-Precio')
-    t = re.sub(r'(?is)<(script|style).*?</\1>', ' ', page)
-    t = re.sub(r'(?i)<\s*(br|/tr|/p|/div|/li|/h\d|/td|/th)[^>]*>', '\n', t)
-    t = html.unescape(re.sub(r'<[^>]+>', ' ', t))
-    lines = [re.sub(r'\s+', ' ', l).strip() for l in t.split('\n')]
-    lines = [l for l in lines if l]
     out = {}
-    for i, l in enumerate(lines):
-        m = re.search(r'\$\s?([\d]{1,3}(?:\.\d{3})+|\d{3,6})(?!.*\$)', l)
-        if not m:
-            continue
-        name = l[:m.start()].strip(' -:|$')
-        if len(key(name)) < 4 and i > 0:  # precio en su propia línea: el nombre está en la anterior
-            name = lines[i - 1]
-        if len(key(name)) >= 4:
-            out[key(name)] = dict(price=num(m.group(1)), stock=True, raw=name)
+    for tr in re.findall(r'(?is)<tr[^>]*>(.*?)</tr>', page):
+        tds = [html.unescape(re.sub(r'<[^>]+>', '', x)).strip() for x in re.findall(r'(?is)<td[^>]*>(.*?)</td>', tr)]
+        if len(tds) >= 5 and re.match(r'\$\s?[\d,\.]+$', tds[-1]):
+            name = re.sub(r'\s+', ' ', tds[1])
+            out[key(name)] = dict(price=float(re.sub(r'[^\d]', '', tds[-1])), stock='AGOTADO' not in tds[0].upper(), raw=name)
     return out, page
 
 
