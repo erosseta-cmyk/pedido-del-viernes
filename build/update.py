@@ -188,8 +188,8 @@ def update(dump=False):
             src[s] = r
         except Exception as e:  # noqa: BLE001
             fail[s] = f'no respondió ({str(e)[:150]})'
+    os.makedirs(os.path.join(ROOT, 'diag'), exist_ok=True)
     if dump:
-        os.makedirs(os.path.join(ROOT, 'diag'), exist_ok=True)
         json.dump({s: {k: v.get('raw') for k, v in d.items()} for s, d in src.items()},
                   open(os.path.join(ROOT, 'diag', 'leido.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     # ¿cada proveedor se leyó bien?
@@ -201,7 +201,13 @@ def update(dump=False):
         if mine and len(found) / len(mine) < MIN_FOUND:
             fail[s] = f'solo se reconocieron {len(found)} de {len(mine)} productos; la página pudo cambiar'
     if dump:
-        print(json.dumps({s: len(d) for s, d in src.items()}), fail)
+        res = {'fallas': fail, 'leidos': {s: len(d) for s, d in src.items()}, 'sin_encontrar': {}, 'muestra': {}}
+        for s in 'ARP':
+            if s in src:
+                res['sin_encontrar'][s] = [it['k'] for it in cat['items'] if it['s'] == s and not lookup(it, src[s], alias)]
+                res['muestra'][s] = [v.get('raw') for v in list(src[s].values())[:400]] if s == 'A' else [v.get('raw') for v in list(src[s].values())[:15]]
+        json.dump(res, open(os.path.join(ROOT, 'diag', 'resumen.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        print(json.dumps(res['leidos']), fail)
         return
     changes, held, hidden, back = [], [], [], []
     for it in cat['items']:
