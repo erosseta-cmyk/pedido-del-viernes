@@ -1,0 +1,60 @@
+name: Actualizar precios
+
+on:
+  schedule:
+    - cron: '17 11 * * 1'   # cada lunes 08:17 hora de Chile (verano) / 07:17 (invierno)
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: 'Qué hacer'
+        type: choice
+        options: [actualizar, solo-pagina, diagnostico]
+        default: actualizar
+  push:
+    branches: [main]
+    paths: ['build/template.html', 'build/catalog.json', 'build/comunas.json', 'build/update.py']
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency: precios
+
+jobs:
+  precios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Leer distribuidoras y generar la página
+        id: up
+        env:
+          BASE_KEY: ${{ secrets.BASE_KEY }}
+          MODO: ${{ github.event_name == 'push' && 'solo-pagina' || inputs.modo || 'actualizar' }}
+        run: |
+          case "$MODO" in
+            solo-pagina) python build/update.py --render ;;
+            diagnostico) python build/update.py --dump ;;
+            *)           python build/update.py ;;
+          esac
+      - name: Guardar lo leído (para revisar errores)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostico
+          path: diag/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Publicar
+        run: |
+          git config user.name "Pedido del Viernes"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html build/catalog.json build/base.enc INFORME.md 2>/dev/null || true
+          if git diff --cached --quiet; then echo "Sin cambios"; else git commit -m "Precios $(date +%d-%m-%Y)" && git push; fi
+      - name: Avisar por correo (aviso de GitHub)
+        if: steps.up.outputs.notify == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "${{ steps.up.outputs.title }}" --body-file INFORME.md

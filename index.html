@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Pedido del Viernes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: tienda de barrio digital — encabezado con quién vende y cómo se paga, categorías con íconos (barra lateral en PC, grilla en celular), lista con ahorro vs supermercado, pedido fijo abajo */
+:root{
+  --bg:#ffffff; --soft:#f3f6f4; --ink:#17201c; --muted:#5f6b66; --line:#e3e9e5;
+  --accent:#0f6b4b; --accent-ink:#ffffff; --accent-soft:#e3f1ea; --save:#0f6b4b;
+  --t-hue:#fff3d6; --t-car:#fde6e3; --t-pes:#e2eefb; --t-con:#e1f4f6; --t-lac:#fbf1dc; --t-fru:#f3e9df; --t-des:#ecf1dd; --t-top:#e3f1ea;
+  --i-hue:#a26a00; --i-car:#b23a2c; --i-pes:#2b62a8; --i-con:#16808b; --i-lac:#9a6a12; --i-fru:#8a5a33; --i-des:#5d6f1f; --i-top:#0f6b4b;
+  --f-d:"Familjen Grotesk","Figtree",system-ui,sans-serif;
+  --f:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101614;--soft:#18211d;--ink:#e8efeb;--muted:#9aa8a1;--line:#27322d;--accent:#55c595;--accent-ink:#06140e;--accent-soft:#17332a;--save:#6fd3a7;
+  --t-hue:#3a2f12;--t-car:#3a1f1c;--t-pes:#16273c;--t-con:#123236;--t-lac:#382d17;--t-fru:#33261b;--t-des:#28301a;--t-top:#17332a;
+  --i-hue:#f2c55c;--i-car:#f39a8e;--i-pes:#8cb6ee;--i-con:#76d0d8;--i-lac:#e9c178;--i-fru:#d9a87e;--i-des:#b9cc78;--i-top:#6fd3a7;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614;--soft:#18211d;--ink:#e8efeb;--muted:#9aa8a1;--line:#27322d;--accent:#55c595;--accent-ink:#06140e;--accent-soft:#17332a;--save:#6fd3a7;
+  --t-hue:#3a2f12;--t-car:#3a1f1c;--t-pes:#16273c;--t-con:#123236;--t-lac:#382d17;--t-fru:#33261b;--t-des:#28301a;--t-top:#17332a;
+  --i-hue:#f2c55c;--i-car:#f39a8e;--i-pes:#8cb6ee;--i-con:#76d0d8;--i-lac:#e9c178;--i-fru:#d9a87e;--i-des:#b9cc78;--i-top:#6fd3a7;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input,select{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+svg.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* encabezado */
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font:700 1.15rem var(--f-d);letter-spacing:-.01em}
+.logo .mark{width:38px;height:38px;border-radius:11px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.logo small{display:block;font:500 .78rem var(--f);color:var(--muted);letter-spacing:0}
+.date{font-size:.8rem;text-align:right;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.hero{padding-block:18px 6px;display:grid;gap:14px}
+.hero h1{font:700 clamp(1.55rem,4.6vw,2.3rem)/1.12 var(--f-d);margin:0;letter-spacing:-.02em;max-width:22ch;text-wrap:balance}
+.hero p{margin:0;color:var(--muted);max-width:56ch}
+@media (max-width:640px){.date{display:none}.hero{gap:12px;padding-top:14px}.trust div>span>span,.trust div>span>b+*{display:none}.trust div{padding:8px 12px}.trust b{font-size:.88rem}.hero p{font-size:.95rem}}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.trust div{background:var(--soft);border-radius:12px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start;font-size:.86rem;line-height:1.3}
+.trust b{display:block;font-size:.9rem}
+.trust svg{color:var(--accent);margin-top:1px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;font-size:.84rem;color:var(--muted);display:flex;gap:8px;align-items:flex-start;line-height:1.3}
+.steps li::before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 .75rem/22px var(--f);text-align:center}
+.steps b{color:var(--ink)}
+.rules{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.84rem;color:var(--muted)}
+.rules b{color:var(--ink)}
+@media (max-width:640px){.trust,.steps{grid-template-columns:1fr}.trust div{padding:9px 12px}}
+
+/* estructura */
+.shell{display:grid;grid-template-columns:1fr;gap:0;padding-block:12px 120px}
+@media (min-width:960px){.shell{grid-template-columns:250px minmax(0,1fr);gap:32px}}
+.side{min-width:0}
+@media (min-width:960px){.side{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));align-self:start}}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (min-width:960px){.cats{grid-template-columns:1fr;gap:2px}}
+.cat{border:0;background:var(--soft);color:var(--ink);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:6px;font:600 .76rem/1.15 var(--f);text-align:center;cursor:pointer;min-height:76px}
+.cat .tile{width:36px;height:36px;border-radius:10px;display:grid;place-items:center}
+.cat[aria-current="true"]{background:var(--ink);color:var(--bg)}
+@media (min-width:960px){.cat{flex-direction:row;justify-content:flex-start;text-align:left;min-height:0;padding:8px 10px;font-size:.92rem;background:none;gap:10px}
+  .cat:hover{background:var(--soft)}.cat[aria-current="true"]{background:var(--accent-soft);color:var(--ink)}.cat .n{margin-left:auto;font-weight:500;color:var(--muted);font-size:.8rem}}
+@media (max-width:959px){.cat .n{display:none}}
+.side .sidenote{display:none}
+@media (min-width:960px){.side .sidenote{display:block;margin-top:14px;font-size:.8rem;color:var(--muted);padding:12px;border-radius:12px;background:var(--soft)}}
+main{min-width:0}
+.searchbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px}
+@media (max-width:959px){.searchbar{margin-top:6px}}
+.search{position:relative}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);width:20px;height:20px}
+.search input{font:16px var(--f);color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:12px 12px 12px 40px;width:100%;-webkit-appearance:none;appearance:none}
+.search input:focus{border-color:var(--accent);outline:none}
+.vhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:6px}
+.vhead h2{font:700 1.4rem var(--f-d);margin:0;letter-spacing:-.01em}
+.vhead span{color:var(--muted);font-size:.85rem}
+.lead{color:var(--muted);font-size:.9rem;margin:4px 0 0}
+.subs{display:flex;flex-wrap:wrap;gap:6px;padding-block:12px 4px}
+.subs button{font:500 .85rem var(--f);background:none;border:1px solid var(--line);color:var(--ink);padding:7px 12px;min-height:36px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.subs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grp{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-top:20px}
+
+/* filas de producto */
+.row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;grid-template-areas:"ic info ctl";gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.row .tile{grid-area:ic;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;align-self:start}
+.info{grid-area:info;min-width:0}
+.nm{font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.u{font-size:.84rem;color:var(--muted);margin-top:1px}
+.cmp{font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.3}
+.cmp .sv{display:inline-block;font-weight:700;color:var(--save);background:var(--accent-soft);padding:1px 7px;border-radius:6px;margin-right:4px}
+.right{grid-area:ctl;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.pr small{font:600 .78rem var(--f);color:var(--muted);margin-left:2px}
+.pr{font:700 1.08rem var(--f-d);font-variant-numeric:tabular-nums;white-space:nowrap}
+.plus{height:40px;min-width:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--accent);background:none;color:var(--accent);font:700 .9rem var(--f);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.plus:hover{background:var(--accent-soft)}
+.step{display:flex;align-items:center;background:var(--accent);color:var(--accent-ink);border-radius:999px;height:40px}
+.step button{width:38px;height:40px;border:0;background:none;color:inherit;font:700 1.1rem var(--f);cursor:pointer}
+.step input{width:30px;border:0;background:none;color:inherit;text-align:center;font:700 16px var(--f);padding:0;-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.row.on .nm{color:var(--accent)}
+.empty{color:var(--muted);padding:32px 0}
+@media (max-width:380px){.row{grid-template-columns:36px minmax(0,1fr) auto;gap:4px 10px}.row .tile{width:36px;height:36px;border-radius:10px}.row .tile svg{width:18px;height:18px}.plus{padding:0 12px}}
+
+/* tintes por categoría */
+.k-top{background:var(--t-top);color:var(--i-top)}.k-hue{background:var(--t-hue);color:var(--i-hue)}.k-car{background:var(--t-car);color:var(--i-car)}.k-pes{background:var(--t-pes);color:var(--i-pes)}
+.k-con{background:var(--t-con);color:var(--i-con)}.k-lac{background:var(--t-lac);color:var(--i-lac)}.k-fru{background:var(--t-fru);color:var(--i-fru)}.k-des{background:var(--t-des);color:var(--i-des)}
+
+footer{border-top:1px solid var(--line);padding-block:20px calc(110px + env(safe-area-inset-bottom,0px));font-size:.8rem;color:var(--muted);display:grid;gap:6px}
+footer b{color:var(--ink)}
+
+/* barra y hoja de pedido */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:8;padding-bottom:env(safe-area-inset-bottom,0px);pointer-events:none}
+.bar .wrap{padding-block:12px;max-width:640px}
+.bar button{pointer-events:auto;width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 1rem var(--f);background:var(--ink);color:var(--bg);border:0;border-radius:16px;padding:15px 18px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.bar b{font-variant-numeric:tabular-nums}
+.bar[data-empty="1"]{display:none}
+.lock{overflow:hidden}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);display:flex;justify-content:flex-end;overscroll-behavior:contain}
+.panel{background:var(--bg);width:min(460px,100%);height:100%;height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;display:flex;flex-direction:column;gap:12px;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 16px}
+.ph{display:flex;justify-content:space-between;align-items:center}
+.ph h2{font:700 1.3rem var(--f-d);margin:0}
+.close{border:0;background:var(--soft);color:var(--ink);border-radius:50%;width:40px;height:40px;font-size:1.05rem;cursor:pointer}
+.panel .row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"info ctl"}
+.panel .row .tile{display:none}
+.sumline{display:flex;justify-content:space-between;font-size:.95rem;color:var(--muted);gap:10px}
+.sumline b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.sumline.save b{color:var(--save)}
+.grand{display:flex;justify-content:space-between;font:700 1.3rem var(--f-d);padding-top:10px;border-top:1.5px solid var(--ink)}
+.minwarn{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.minwarn b{font-variant-numeric:tabular-nums}
+.meter{height:5px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:8px}
+.meter i{display:block;height:100%;background:var(--accent)}
+.flabel{font-weight:700;font-size:.95rem;margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f{font:16px var(--f);color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:12px;width:100%;min-width:0;-webkit-appearance:none;appearance:none}
+.f:focus{border-color:var(--accent);outline:none}
+select.f{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 17px) 52%,calc(100% - 12px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:30px}
+.pay{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pay legend{font-weight:700;font-size:.95rem;margin-bottom:8px;padding:0}
+.pay label{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:12px;padding:12px;font-size:.86rem;color:var(--muted);cursor:pointer;line-height:1.35;border:2px solid transparent}
+.pay label b{color:var(--ink)}
+.pay input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);flex:none}
+.pay label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.bank{background:var(--soft);border-radius:12px;padding:12px;display:grid;gap:8px}
+.bank dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:.92rem}
+.bank dt{color:var(--muted)}.bank .ghost{background:var(--bg);border:1px solid var(--line)}.bank dd{margin:0;font-weight:600;overflow-wrap:anywhere;user-select:all}
+.note{font-size:.82rem;color:var(--muted);margin:0}
+.acts{display:flex;gap:8px}
+.wa{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:700 1rem var(--f);background:var(--accent);color:var(--accent-ink);border-radius:14px;padding:14px 12px}
+.wa[aria-disabled="true"]{opacity:.6}
+.why{margin:0;font-size:.9rem;font-weight:600;color:#b4532a;background:#fdf0e8;border-radius:10px;padding:9px 12px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .why{color:#f2b48f;background:#3a2318}}
+:root[data-theme="dark"] .why{color:#f2b48f;background:#3a2318}
+.ghost{font:600 .92rem var(--f);background:var(--soft);color:var(--ink);border:0;border-radius:14px;padding:12px 14px;cursor:pointer}
+.phone{font-size:.82rem;color:var(--muted);margin:0}.phone b{color:var(--ink);user-select:all}
+details.how{font-size:.86rem;color:var(--muted)}
+details.how summary{cursor:pointer;color:var(--ink);font-weight:600;min-height:32px;display:flex;align-items:center}
+details.how ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
+.receipt{border:2px solid var(--accent);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.rc-h{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.rc-code{font:700 1.6rem var(--f-d);letter-spacing:.04em}
+.rc-row{display:flex;justify-content:space-between;gap:10px;font-size:.95rem}
+.rc-steps{margin:0;padding-left:18px;font-size:.88rem;display:grid;gap:4px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:10px;font-size:.9rem;z-index:30}
+@media (prefers-reduced-motion:no-preference){.sheet:not([hidden]) .panel{animation:slide .22s ease-out}@keyframes slide{from{transform:translateX(24px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-top" viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-hue" viewBox="0 0 24 24"><path d="M12 3c-3.6 0-6.3 5.6-6.3 10.2a6.3 6.3 0 0 0 12.6 0C18.3 8.6 15.6 3 12 3z"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M14.5 3.5a5.5 5.5 0 0 1 3.9 9.4l-4.6 4.6a3.2 3.2 0 0 1-4.5-4.5l4.6-4.6"/><path d="M14.5 3.5a5.5 5.5 0 0 0-3.9 1.6L9.3 6.4"/><path d="M9.3 17.5 6 20.8"/><circle cx="4.6" cy="19.4" r="1.6"/><circle cx="6.6" cy="21.4" r="1.2"/></symbol>
+  <symbol id="i-pes" viewBox="0 0 24 24"><path d="M2.5 12c3.2-4.6 9-5.6 13.2-2.8L20.5 6v12l-4.8-3.2C11.5 17.6 5.7 16.6 2.5 12z"/><circle cx="8" cy="11.2" r=".9"/></symbol>
+  <symbol id="i-con" viewBox="0 0 24 24"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M3.8 16.8l16.4-9.6"/><path d="M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5M4.6 10.4l3.4.9-.9 3.4M19.4 13.6l-3.4-.9.9-3.4"/></symbol>
+  <symbol id="i-lac" viewBox="0 0 24 24"><path d="M3 17.5 12.5 6l8.5 5.5v6z"/><path d="M3 17.5h18"/><circle cx="10" cy="14" r="1.1"/><circle cx="15.5" cy="14.8" r=".9"/><circle cx="13" cy="11.2" r=".7"/></symbol>
+  <symbol id="i-fru" viewBox="0 0 24 24"><path d="M12 3c4.2 3 6.4 7.4 4.2 12.6-1.3 3.2-7.1 3.2-8.4 0C5.6 10.4 7.8 6 12 3z"/><path d="M12 6.5c-1 2.6-1 6.4 0 10"/></symbol>
+  <symbol id="i-des" viewBox="0 0 24 24"><rect x="6" y="8" width="12" height="13" rx="2.5"/><path d="M7.5 3.5h9V8h-9z"/><path d="M9 13h6"/></symbol>
+  <symbol id="i-chk" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-shd" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 8 12 4l8.5 4v8L12 20l-8.5-4z"/><path d="M3.5 8 12 12l8.5-4M12 12v8"/></symbol>
+  <symbol id="i-srch" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.5-2-1.5-2.5-2.5l.8-1-1-2z"/></symbol>
+</svg>
+
+</head>
+<body>
+<header class="wrap">
+  <div class="brand">
+    <div class="logo"><span class="mark"><svg class="ic"><use href="#i-box"/></svg></span><span>Pedido del Viernes<small>por Esteban · San Miguel</small></span></div>
+    <span class="date" id="fecha"></span>
+  </div>
+  <section class="hero">
+    <h1>Precios de distribuidora, en la puerta de tu casa.</h1>
+    <p>Cada viernes compro por mayor y te llevo tu pedido. Eliges aquí, me lo envías por WhatsApp y pagas recién cuando te confirmo el total.</p>
+    <div class="trust">
+      <div><svg class="ic"><use href="#i-chk"/></svg><span><b>No pagas al pedir</b><span>Pagas cuando te confirmo, por transferencia o Mercado Pago.</span></span></div>
+      <div><svg class="ic"><use href="#i-cal"/></svg><span><b id="tEntrega">Entrega el viernes</b><span id="tEntrega2"></span></span></div>
+      <div><svg class="ic"><use href="#i-shd"/></svg><span><b>Si algo llega malo, no lo pagas</b><span>Se descuenta y te devuelvo su valor. Sin trámites.</span></span></div>
+    </div>
+    <ol class="steps">
+      <li><span><b>Elige y envía</b> tu pedido por WhatsApp, hasta el <span id="sCierre"></span>.</span></li>
+      <li><span><b>Te confirmo el total</b> y pagas antes del <span class="pHasta"></span>.</span></li>
+      <li><span><b>El viernes te lo llevo</b> a tu casa.</span></li>
+    </ol>
+    <div class="rules" id="rules"></div>
+  </section>
+</header>
+
+<div class="wrap shell">
+  <aside class="side">
+    <nav class="cats" id="cats" aria-label="Categorías"></nav>
+    <p class="sidenote" id="sidenote"></p>
+  </aside>
+  <main>
+    <div class="searchbar"><label class="search"><svg class="ic"><use href="#i-srch"/></svg><input id="q" type="search" placeholder="Buscar: huevos, merluza, almendras…" aria-label="Buscar producto" enterkeyhint="search" autocomplete="off"></label></div>
+    <div class="vhead"><h2 id="vTitle"></h2><span id="vCount"></span></div>
+    <p class="lead" id="vLead" hidden></p>
+    <nav class="subs" id="subs" aria-label="Subcategoría"></nav>
+    <div id="list"></div>
+  </main>
+</div>
+<footer class="wrap">
+  <span><b>Pedido del Viernes</b> · Esteban, San Miguel · WhatsApp <b id="fPhone"></b></span>
+  <span id="stamp"></span>
+  <span id="cmpNote"></span>
+  <span>Tu nombre, comuna y dirección se usan solo para coordinar tu entrega.</span>
+</footer>
+
+<div class="bar" id="bar" data-empty="1"><div class="wrap"><button id="openCart"><span id="barCount"></span><b id="barTotal">$0</b></button></div></div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="ph"><h2 id="cartTitle">Tu pedido</h2><button class="close" id="closeCart" aria-label="Cerrar">✕</button></div>
+    <div id="lines"></div>
+    <div class="sumline"><span>Productos</span><b id="sub">$0</b></div>
+    <div class="sumline"><span id="feeLbl">Despacho</span><b id="fee">$0</b></div>
+    <div class="sumline save" id="saveLine" hidden><span>Ahorras vs supermercado</span><b id="saveAmt"></b></div>
+    <div class="grand"><span>Total</span><span id="grand">$0</span></div>
+    <div class="minwarn" id="minwarn" hidden></div>
+    <div class="flabel">Datos de entrega</div>
+    <div class="two"><input class="f" id="cNombre" placeholder="Nombre" aria-label="Nombre" autocomplete="name"><select class="f" id="cComuna" aria-label="Comuna de entrega"></select></div>
+    <input class="f" id="cDir" placeholder="Dirección (calle, número, depto)" aria-label="Dirección de entrega" autocomplete="street-address">
+    <fieldset class="pay"><legend>¿Cómo vas a pagar?</legend>
+      <label><input type="radio" name="pago" value="tr" id="pagoTr"> <span><b>Transferencia</b> — <span id="trTxt"></span></span></label>
+      <label><input type="radio" name="pago" value="mp" id="pagoMp"> <span><b>Mercado Pago</b> — débito, crédito o saldo. Te envío un link de pago por el total exacto y Mercado Pago te manda el comprobante.</span></label>
+    </fieldset>
+    <div class="bank" id="bank" hidden></div>
+    <details class="how"><summary>Condiciones del pedido</summary><ul id="how"></ul></details>
+    <div class="receipt" id="receipt" hidden></div>
+    <p class="why" id="why" hidden></p>
+    <div class="acts"><a class="wa" id="wa" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-wa"/></svg>Enviar por WhatsApp</a><button class="ghost" id="copy">Copiar</button></div>
+    <p class="phone">¿No se abre WhatsApp? Toca "Copiar" y envíalo al <b id="phone"></b>. <button class="ghost" id="clear" style="padding:6px 10px;font-size:.8rem;margin-left:4px">Vaciar pedido</button></p>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+// ===== Reglas (cámbialas aquí) =====
+const PHONE="56979728587";        // WhatsApp que recibe los pedidos
+const MINIMO=25000;               // pedido mínimo en productos
+const DESP_BASE=1000, DESP_KM=250, DESP_MIN=1500, DESP_MAX_KM=20;  // despacho = base + km × valor, redondeado a $500
+const KM={"San Miguel":1.0,"San Joaquín":3.2,"Pedro Aguirre Cerda":3.4,"La Cisterna":4.6,"Lo Espejo":5.8,"San Ramón":6.1,"La Granja":6.4,"Macul":7.0,"La Florida":7.7,"Cerrillos":7.9,"Santiago":8.2,"Estación Central":8.5,"Ñuñoa":9.6,"El Bosque":9.7,"Providencia":11.7,"Quinta Normal":12.1,"Lo Prado":12.4,"La Pintana":12.6,"Independencia":12.8,"Maipú":13.1,"Peñalolén":13.3,"Recoleta":14.0,"San Bernardo":14.9,"Pudahuel":16.1,"Cerro Navia":16.2,"La Reina":16.6,"Renca":17.1,"Las Condes":17.3,"Conchalí":17.9,"Vitacura":18.9,"Huechuraba":19.1,"Puente Alto":19.2,"Quilicura":23.1,"Lo Barnechea":28.2};
+const CIERRE="miércoles a las 20:00";
+const HORARIO="entre 10:00 y 13:00";
+const BANCO={titular:"Esteban Rosset",rut:"17.169.811-1",banco:"Banco de Chile",tipo:"Cuenta corriente",cuenta:"1695058200",correo:"e.rosset.a@gmail.com"};
+const PAGO_HASTA="jueves a las 20:00";   // pedido no pagado a esta hora no entra a la compra del viernes  // si lo completas, se muestra al elegir transferencia
+const PRECIOS_AL="27 de octubre de 2026";
+const CMP_AL="27 de octubre de 2026";  // vacío = sin comparaciones vigentes
+// ===================================
+const RAW={"items":[["d2-1c622","Huevos","Blancos","Huevos jumbo blanco","Bandeja de 20 huevos",6290,{"txt":"Calibre jumbo: no se encuentra en supermercados"}],["d2-ed294","Huevos","Blancos","Huevos jumbo blanco","Caja cerrada de 100 huevos",29090,0],["d2-e7a34","Huevos","Blancos","Huevos primera blanco","Bandeja de 30 huevos",5090,{"sup":7590,"txt":"Súper: huevo grande, 30 un, desde $7.590"}],["d2-66eb8","Huevos","Blancos","Huevos primera blanco","Caja cerrada de 180 huevos",28090,0],["d2-96af3","Huevos","Blancos","Huevos súper especial blanco","Bandeja de 30 huevos",7290,{"txt":"Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u y aquí $243 c/u"}],["d2-485a8","Huevos","Blancos","Huevos súper especial blanco","Caja cerrada de 180 huevos",40390,0],["d2-8641b","Huevos","De color","Huevos jumbo color","Bandeja de 20 huevos",6290,{"txt":"Calibre jumbo: no se encuentra en supermercados"}],["d2-4c5e2","Huevos","De color","Huevos jumbo color","Caja cerrada de 100 huevos",29090,0],["d2-c5a21","Huevos","De color","Huevos súper especial color","Bandeja de 30 huevos",7290,{"txt":"Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u y aquí $243 c/u"}],["d2-a944c","Huevos","De color","Huevos súper especial color","Caja cerrada de 180 huevos",40390,0],["d1-737db","Pollo y carnes","Pollo y cerdo","Chuleta de centro","Bolsa de 1 kg",6490,0],["d1-40417","Pollo y carnes","Pollo y cerdo","Chuleta de centro","Caja de 20 unidades de 150 g (3 kg)",18390,0],["d1-e8609","Pollo y carnes","Pollo y cerdo","Chuleta vetada parrillera","Bolsa de 1 kg",6490,0],["d1-477ae","Pollo y carnes","Pollo y cerdo","Costillar en tira Super Cerdo","1 kg",9790,0],["d1-87c58","Pollo y carnes","Pollo y cerdo","Costillas baby back ribs Don Pancho","Unidad de aprox. 1 kg",11290,0],["d1-4f931","Pollo y carnes","Pollo y cerdo","Pechuga de pollo deshuesada sin piel","Bolsa de 1 kg",6990,0],["d1-0b567","Pollo y carnes","Churrascos y lomito","Churrasco posta laminado","Caja de 3 kg (60 unidades de 50 g)",35590,0],["d1-ea480","Pollo y carnes","Churrascos y lomito","Churrasco vacuno Carnes HB","Unidad de 120 g",1290,0],["d1-a8f47","Pollo y carnes","Churrascos y lomito","Churrasco vacuno Carnes HB","Caja de 25 unidades de 120 g",28490,0],["d1-4a0ed","Pollo y carnes","Churrascos y lomito","Churrasco vacuno Carnes HB","Pack de 4 unidades de 120 g",4990,0],["d1-dc387","Pollo y carnes","Churrascos y lomito","Churrasco vacuno laminado","Caja de 3 kg (60 unidades de 50 g)",32190,0],["d1-a9e69","Pollo y carnes","Churrascos y lomito","Lomito laminado","Caja de 3 kg (60 unidades de 50 g)",23390,0],["d1-c9c9c","Pollo y carnes","Para compartir","Caja parrillera","Caja para 6 a 8 personas",36090,0],["d1-86cac","Pollo y carnes","Para compartir","Kit chacarero churrasco 3 kg + porotos + salsas","Kit completo",41690,0],["d1-91db7","Pollo y carnes","Para compartir","Kit chacarero lomito 3 kg + porotos + salsas","Kit completo",32890,0],["d1-2eb53","Pollo y carnes","Para compartir","Kit hamburguesero 28 La Crianza + 4 cheddar + aros","Kit completo",40390,0],["d1-ea019","Pollo y carnes","Para compartir","Kit hamburguesero 40 Karmac + 6 cheddar + aros","Kit completo",46590,0],["d1-b3cf6","Pollo y carnes","Para compartir","Kit hamburguesero 56 Super Beef + 8 cheddar + aros","Kit completo",57690,0],["d1-b87be","Pollo y carnes","Hamburguesas","Hamburguesa big Pampa Verde","Unidad de 225 g",2190,0],["d1-a3956","Pollo y carnes","Hamburguesas","Hamburguesa La Crianza","Unidad de 100 g",1090,0],["d1-8e0db","Pollo y carnes","Hamburguesas","Hamburguesa La Crianza","Caja de 28 unidades de 100 g",27390,0],["d1-ffdda","Pollo y carnes","Hamburguesas","Hamburguesa La Crianza","Pack de 5 unidades de 100 g",4990,0],["d1-d12b9","Pollo y carnes","Hamburguesas","Hamburguesa Super Beef","Unidad de 100 g",690,0],["d1-bbd98","Pollo y carnes","Hamburguesas","Hamburguesa Super Beef","Caja de 56 unidades de 100 g",36290,0],["d1-1b70a","Pollo y carnes","Hamburguesas","Hamburguesa Super Beef","Pack de 5 unidades de 100 g",3490,{"sup":3745,"txt":"Súper: 5 un desde $3.745 (caja de 10 a $7.490)"}],["d1-4f99d","Pollo y carnes","Hamburguesas","Hamburguesa vacuno Karmac","Unidad de 100 g",850,0],["d1-c57b0","Pollo y carnes","Hamburguesas","Hamburguesa vacuno Karmac","Pack de 5 unidades de 100 g",3990,0],["d1-29086","Pollo y carnes","Listo para servir","Carne desmechada casera Vida Estable 1,2 kg","Pouch",18890,0],["d1-f252f","Pollo y carnes","Listo para servir","Pino casero Vida Estable 3 kg","Pouch",27390,0],["d1-e7e7e","Pollo y carnes","Vacuno","Carne molida Receta del Abuelo","Unidad de 250 g",3090,0],["d1-eec82","Pollo y carnes","Vacuno","Carne molida Receta del Abuelo","Pack de 2 unidades de 250 g",5890,0],["d1-d8303","Pollo y carnes","Vacuno","Carne molida Super Beef","Unidad de 250 g",2690,0],["d1-6ef54","Pollo y carnes","Vacuno","Carne molida Super Beef","Pack de 4 unidades de 250 g",10090,0],["d1-d7ff0","Pescados y mariscos","Mariscos","Anillos de calamar Gordon Fish","Bolsa de 1 kg",8690,0],["d2-ab605","Pescados y mariscos","Mariscos","Camarón 36/40 cocido pelado y desvenado","1 kg",9190,0],["d2-2bd92","Pescados y mariscos","Mariscos","Camarón asiático 100/200 cocido","1 kg",5490,0],["d2-9822c","Pescados y mariscos","Mariscos","Camarón asiático 36/40 cocido y pelado","1 kg",10290,0],["d2-eb4ef","Pescados y mariscos","Mariscos","Camarón asiático 36/40 crudo","1 kg",8990,0],["d2-eb4a0","Pescados y mariscos","Mariscos","Camarón ecuatoriano pre-cocido","1 kg",11190,0],["d2-68224","Pescados y mariscos","Mariscos","Carne de jaiba","Bolsa de 500 g",11490,0],["d1-36395","Pescados y mariscos","Mariscos","Choritos Gordon Fish","Bolsa de 1 kg",5390,0],["d2-d8037","Pescados y mariscos","Mariscos","Ostiones con coral y concha","Bolsa de 1 kg",18690,0],["d2-34a4f","Pescados y mariscos","Mariscos","Ostión con coral sin concha","Bolsa de 500 g",11290,0],["d1-50951","Pescados y mariscos","Mariscos","Surtido de mariscos Gordon Fish","Bolsa de 1 kg",5190,0],["d1-edaf1","Pescados y mariscos","Pescados","Atún trozo","Bolsa de 500 g",5290,0],["d1-f8b6d","Pescados y mariscos","Pescados","Merluza filete nacional","Bolsa de 1 kg",6290,{"sup":9780,"txt":"Súper: $9.780 el kg (filete 500 g a $4.890)"}],["d1-12b3d","Pescados y mariscos","Pescados","Pangasius filete","Bolsa de 1 kg",5490,0],["d2-43a31","Pescados y mariscos","Pescados","Reineta filete","1 kg",10090,0],["d2-db452","Pescados y mariscos","Pescados","Salmón en trozo con piel","1 kg",17190,0],["d2-6d60d","Pescados y mariscos","Pescados","Salmón en trozo sin piel","1 kg",16090,0],["d2-fd601","Pescados y mariscos","Pescados","Salmón filete con piel","1 kg",16190,0],["d2-4b21d","Pescados y mariscos","Pescados","Salmón filete sin piel","1 kg",18390,0],["d2-2ec1e","Pescados y mariscos","Pescados","Trucha filete sin piel","1 kg",14890,0],["d1-4a9b8","Congelados","Apanados","Crocante de pollo Super Pollo","Unidad de 100 g",790,0],["d1-b84bb","Congelados","Apanados","Crocante de pollo Super Pollo","Pack de 5 unidades de 100 g",3990,0],["d1-8a622","Congelados","Apanados","Croqueta de pollo Super Pollo","Unidad de 80 g",650,0],["d1-20677","Congelados","Apanados","Croqueta de pollo Super Pollo","Caja de 64 unidades de 80 g",39990,0],["d1-0f336","Congelados","Apanados","Croqueta de pollo Super Pollo","Pack de 5 unidades de 80 g",3290,0],["d2-3aaec","Congelados","Apanados","Croqueta de salmón La Crianza","Unidad de 80 g",1090,0],["d1-cc3c3","Congelados","Apanados","Croquetas de merluza austral Friosur","Bolsa de 960 g",7190,0],["d1-5cf04","Congelados","Apanados","Escalopa de vacuno Kayser","Unidad de 120 g",1290,0],["d1-26324","Congelados","Apanados","Escalopa de vacuno Kayser Receta del Abuelo","Caja de 26 unidades de 120 g",31890,0],["d1-f2978","Congelados","Apanados","Escalopa de vacuno Kayser Receta del Abuelo","Pack de 5 unidades de 120 g",6490,0],["d1-a046b","Congelados","Apanados","Nuggets de pollo PF","Bolsa de 1 kg",8290,0],["d1-85bef","Congelados","Apanados","Nuggets de pollo Super Pollo","Bolsa de 1 kg",5690,0],["d1-d8f5a","Congelados","Apanados","Pechuga de pollo apanada Receta del Abuelo","Unidad de 120 g",1290,0],["d1-45c13","Congelados","Apanados","Pechuga de pollo apanada Receta del Abuelo","Caja de 26 unidades de 120 g",31890,0],["d1-2855f","Congelados","Apanados","Pechuga de pollo apanada Receta del Abuelo","Pack de 5 unidades de 120 g",6490,0],["d1-1cf4f","Congelados","Apanados","Suprema de pollo Receta del Abuelo","Unidad de 120 g",1290,0],["d1-9f008","Congelados","Apanados","Suprema de pollo Receta del Abuelo","Caja de 26 unidades de 120 g",31890,0],["d1-9a08a","Congelados","Apanados","Suprema de pollo Receta del Abuelo","Pack de 5 unidades de 120 g",6490,0],["d1-cbaf6","Congelados","Apanados","Varitas de merluza apanada Friosur","Bolsa de 1 kg",5990,0],["d1-b9c09","Congelados","Empanadas y masas","Empanadas cóctel queso media luna","Caja de 40 unidades",6490,0],["d1-4b7a6","Congelados","Empanadas y masas","Empanadas cóctel queso raviolera","Caja de 48 unidades",6090,0],["d2-2f835","Congelados","Empanadas y masas","Empanadas de queso cóctel","Caja de 18 unidades",2790,0],["d2-4d613","Congelados","Empanadas y masas","Masas para empanadas 18 cm","Pack de 10 unidades",3390,0],["d2-19338","Congelados","Empanadas y masas","Sopaipillas","Pack de 10 unidades",1990,0],["d2-b24fc","Congelados","Frutas","Arándanos","1 kg",5790,0],["d2-0b5d9","Congelados","Frutas","Bites bombones Frutos del Maipo arándanos","Unidad de 150 g",4890,0],["d2-8844a","Congelados","Frutas","Bites bombones Frutos del Maipo frambuesas","Unidad de 150 g",4890,0],["d2-d8665","Congelados","Frutas","Bites bombones Frutos del Maipo frutilla","Unidad de 150 g",4790,0],["d2-61ede","Congelados","Frutas","Durazno en rodajas Minuto Verde","Bolsa de 1 kg",5190,0],["d2-717af","Congelados","Frutas","Espinaca Minuto Verde","Bolsa de 1 kg",3690,0],["d1-439cf","Congelados","Frutas","Frambuesas enteras Minuto Verde","Bolsa de 1 kg",10890,0],["d1-f33a7","Congelados","Frutas","Frutillas enteras Minuto Verde","Bolsa de 1 kg",5290,{"sup":6810,"txt":"Súper: 1 kg desde $6.810 (454 g a $3.090)"}],["d1-50ed2","Congelados","Frutas","Mango cubo Green Farms","Bolsa de 1 kg",5890,0],["d2-8a91a","Congelados","Frutas","Melón tuna trozo","Bolsa de 1 kg",5490,0],["d1-ce5fc","Congelados","Frutas","Mix berries Minuto Verde","Bolsa de 1 kg",8390,0],["d2-c6ea1","Congelados","Frutas","Piña trozos","Bolsa de 1 kg",6090,0],["d1-69173","Congelados","Papas y acompañamientos","Aros de cebolla McCain","Bolsa de 1 kg",5090,0],["d1-1b73d","Congelados","Papas y acompañamientos","Papas duquesa Minuto Verde","Bolsa de 1 kg",3990,0],["d1-6a457","Congelados","Papas y acompañamientos","Papas duquesa Minuto Verde","Bolsa de 2,5 kg",9190,0],["d2-2c1c8","Congelados","Papas y acompañamientos","Papas pre fritas Europ","Bolsa de 2,5 kg",6490,0],["d2-c0142","Congelados","Papas y acompañamientos","Papas pre fritas Farm Frites 10 mm","Bolsa de 2,5 kg",6090,0],["d2-af94a","Congelados","Papas y acompañamientos","Papas pre fritas finas Minuto Verde 7mm","Bolsa de 2,5 kg",7090,0],["d2-4d03c","Congelados","Papas y acompañamientos","Papas pre fritas Frozenta","Bolsa de 1 kg",2390,0],["d2-dd89a","Congelados","Papas y acompañamientos","Papas pre fritas Minuto Verde 12 mm","Bolsa de 2,5 kg",7090,0],["d1-4e7fd","Congelados","Papas y acompañamientos","Papas prefritas C7 Farm Frites","Bolsa de 2,5 kg",6390,0],["d1-cb296","Congelados","Papas y acompañamientos","Papas prefritas Farm Frites C12","Bolsa de 2 kg",5490,{"sup":6980,"txt":"Súper: 2 kg desde $6.980 (1 kg a $3.490)"}],["d1-1bf7c","Congelados","Papas y acompañamientos","Papas prefritas Minuto Verde","Bolsa de 1 kg",3890,0],["d1-bc8b7","Congelados","Papas y acompañamientos","Papas rústicas sazonadas Farm Frites","Bolsa de 2 kg",6790,0],["d1-8b962","Congelados","Papas y acompañamientos","Papas rústicas Simplot","Bolsa de 2 kg",6790,0],["d1-89713","Congelados","Pulpas de fruta","Jugo de limón Minuto Verde","Bolsa de 1 kg",4390,0],["d2-50eeb","Congelados","Pulpas de fruta","Pulpa de chirimoya","Bolsa de 1 kg",6790,0],["d2-e6bf8","Congelados","Pulpas de fruta","Pulpa de durazno","Bolsa de 1 kg",4290,0],["d1-f42a9","Congelados","Pulpas de fruta","Pulpa de frambuesa Minuto Verde","Bolsa de 1 kg",7390,0],["d2-d78e6","Congelados","Pulpas de fruta","Pulpa de frutilla","1 kg",4390,0],["d2-5b265","Congelados","Pulpas de fruta","Pulpa de lúcuma","1 kg",9490,0],["d2-eea78","Congelados","Pulpas de fruta","Pulpa de mango","1 kg",4890,0],["d2-7273e","Congelados","Pulpas de fruta","Pulpa de maracuyá","1 kg",7090,0],["d1-c103b","Congelados","Pulpas de fruta","Pulpa de maracuyá con pepas Guallarauco","Bolsa de 1 kg",7690,0],["d2-45071","Congelados","Pulpas de fruta","Pulpa de melón tuna","1 kg",3990,0],["d1-83b93","Congelados","Pulpas de fruta","Pulpa de piña Minuto Verde","Bolsa de 1 kg",5290,0],["d1-02d91","Congelados","Vegetariano","Hamburguesa garbanzo Minuto Verde","Unidad de 100 g",690,0],["d1-2b9f5","Congelados","Vegetariano","Hamburguesa garbanzo Minuto Verde","Pack de 5 unidades de 100 g",3290,0],["d1-7df77","Congelados","Vegetariano","Hamburguesa lentejas Minuto Verde","Unidad de 100 g",690,0],["d1-4a13c","Congelados","Vegetariano","Hamburguesa lentejas Minuto Verde","Pack de 5 unidades de 100 g",3290,0],["d1-f0b2b","Congelados","Vegetariano","Hamburguesa soya Mr. Veggie","Unidad de 100 g",590,0],["d1-d0bed","Congelados","Vegetariano","Hamburguesa soya Mr. Veggie","Caja de 42 unidades de 100 g",22790,0],["d1-6b64f","Congelados","Vegetariano","Hamburguesa soya Mr. Veggie","Pack de 5 unidades de 100 g",2990,0],["d2-e3f05","Congelados","Vegetariano","Hamburguesas de porotos negros Minuto Verde","Pack de 10 unidades",6690,0],["d2-1bd91","Congelados","Arvejas, habas y porotos","Arvejas en grano Frutos del Maipo","Bolsa de 500 g",2090,0],["d2-77490","Congelados","Arvejas, habas y porotos","Arvejas en grano Frutos del Maipo","Por kilo · viene en bolsa de 2 kg, pide de a 2",3990,0],["d1-780c3","Congelados","Arvejas, habas y porotos","Arvejas Minuto Verde","Bolsa de 1 kg",2890,0],["d1-858f7","Congelados","Arvejas, habas y porotos","Habas Minuto Verde","Bolsa de 1 kg",3090,0],["d1-8b426","Congelados","Arvejas, habas y porotos","Poroto verde Green Farm","Bolsa de 1 kg",3490,0],["d1-9c4fc","Congelados","Arvejas, habas y porotos","Porotos granados a la chilena Minuto Verde","Bolsa de 1 kg",4490,0],["d1-e513f","Congelados","Arvejas, habas y porotos","Porotos granados Minuto Verde","Bolsa de 1 kg",4890,0],["d2-b2ed1","Congelados","Arvejas, habas y porotos","Porotos verdes corte francés Minuto Verde","Bolsa de 1 kg",3790,0],["d1-6d604","Congelados","Otras verduras","Champiñón laminado Minuto Verde","Bolsa de 1 kg",3790,0],["d2-12248","Congelados","Otras verduras","Fondo de alcachofa Minuto Verde","Bolsa de 1 kg",9090,0],["d2-c9229","Congelados","Otras verduras","Pulpa de palta","Bolsa de 500 g",3290,0],["d1-5babe","Congelados","Otras verduras","Sofrito con ajo Minuto Verde","Bolsa de 500 g",2190,0],["d2-c3b82","Congelados","Mezclas y ensaladas","Chapsui de verduras Frutos del Maipo","Bolsa de 2 kg",10790,0],["d2-80a6a","Congelados","Mezclas y ensaladas","Chapsui Minuto Verde","Bolsa de 1 kg",3890,0],["d2-aa851","Congelados","Mezclas y ensaladas","Chapsui salteado Frutos del Maipo","Bolsa de 500 g",2690,0],["d2-a0a95","Congelados","Mezclas y ensaladas","Ensalada jardinera Minuto Verde","Bolsa de 1 kg",3290,0],["d2-fa8fa","Congelados","Mezclas y ensaladas","Ensalada primavera Frutos del Maipo","Bolsa de 2 kg",7890,0],["d2-41252","Congelados","Mezclas y ensaladas","Ensalada primavera Frutos del Maipo","Bolsa de 500 g",1890,0],["d2-2f673","Congelados","Mezclas y ensaladas","Ensalada primavera Minuto Verde","Bolsa de 1 kg",3290,0],["d1-10fee","Congelados","Mezclas y ensaladas","Mix de ensalada Minuto Verde","Bolsa de 1 kg",2890,0],["d1-984ff","Congelados","Mezclas y ensaladas","Mix vegetales Green Farm","Bolsa de 1 kg",2790,{"sup":3380,"txt":"Súper: 1 kg desde $3.380 (500 g a $1.690)"}],["d1-90d93","Congelados","Choclo","Choclo en trozo Minuto Verde","Bolsa de 1 kg",3790,0],["d1-ca5e5","Congelados","Choclo","Choclo grano dulce Green Farms","Bolsa de 1 kg",2790,0],["d2-0e4a0","Congelados","Choclo","Choclo grano Frutos del Maipo","Bolsa de 2 kg",8090,0],["d2-84569","Congelados","Choclo","Choclo grano Frutos del Maipo","Bolsa de 500 g",2090,0],["d2-eae4a","Congelados","Choclo","Choclo grano Minuto Verde","Bolsa de 1 kg",2890,0],["d2-1ba13","Congelados","Choclo","Choclo mazorca en trozos","1 kg",4690,0],["d2-42e42","Congelados","Choclo","Pasta de choclo con albahaca Frutos del Maipo","Bolsa de 1 kg",5490,0],["d2-b5161","Congelados","Choclo","Pasta de choclo con albahaca Minuto Verde","Bolsa de 1 kg",3290,0],["d2-a499d","Congelados","Choclo","Pasta de choclo Minuto Verde","Bolsa de 1 kg",3290,0],["d2-61ff2","Lácteos y fiambres","Fiambres y vienesas","Jamón serrano Costa Brava","Sachet de 500 g",11690,0],["d2-51373","Lácteos y fiambres","Fiambres y vienesas","Pepperoni laminado Sugardale de USA","Envase de 1 kg",12990,0],["d2-6266a","Lácteos y fiambres","Fiambres y vienesas","Tocino ahumado nacional","Envase de 1 kg",13590,0],["d2-1414a","Lácteos y fiambres","Fiambres y vienesas","Tocino ahumado nacional","Envase de 500 g",7690,0],["d1-54cdb","Lácteos y fiambres","Fiambres y vienesas","Vienesa de pollo Cartuja","Paquete de 1 kg (25 unidades)",4990,0],["d2-db95b","Lácteos y fiambres","Mantequilla","Mantequilla Kumey","Unidad de 250 g",2890,0],["d2-a07b4","Lácteos y fiambres","Mantequilla","Mantequilla La Vaquita","Unidad de 250 g",2690,0],["d2-1d17d","Lácteos y fiambres","Mantequilla","Mantequilla Paihuen Osorno","Unidad de 250 g",3090,0],["d2-854ab","Lácteos y fiambres","Mantequilla","Mantequilla Rumay","Unidad de 200 g",2490,0],["d2-0f940","Lácteos y fiambres","Para cocinar","Queso gouda granulado la Hacienda del Sur","Envase de 1 kg",8090,0],["d2-50797","Lácteos y fiambres","Para cocinar","Queso gouda granulado La Vaquita","Envase de 1 kg",8690,0],["d2-5b5e4","Lácteos y fiambres","Para cocinar","Queso mozzarella Corlasa","Por kilo (pieza de 3,3 kg)",7190,0],["d2-5f747","Lácteos y fiambres","Para cocinar","Queso mozzarella granulado de Argentina","Bolsa de 4 kg",35590,0],["d2-f0842","Lácteos y fiambres","Para cocinar","Queso mozzarella granulado la Hacienda del Sur","Envase de 1 kg",9090,0],["d2-1ed54","Lácteos y fiambres","Para cocinar","Queso mozzarella granulado La Vaquita","Envase de 1 kg",10690,0],["d2-641c6","Lácteos y fiambres","Para cocinar","Queso mozzarella Hacienda del Sur","Por kilo (pieza de 3,8 kg)",8090,0],["d1-14a61","Lácteos y fiambres","Para cocinar","Queso mozzarella Molfino","Envase de 1 kg",9290,0],["d2-f2b0d","Lácteos y fiambres","Para cocinar","Queso mozzarella Pampa Cheese argentino","1 kg",7990,0],["d2-7bce5","Lácteos y fiambres","Para cocinar","Queso mozzarella President barra","Por kilo (pieza de 3,5 kg)",7890,0],["d2-c2c21","Lácteos y fiambres","Para cocinar","Queso mozzarella vegano Mama Mozzas","Por kilo (pieza de 2,5 kg)",6690,0],["d2-3a5a5","Lácteos y fiambres","Para cocinar","Queso parmesano en hebras Lanalhue","Envase de 500 g",12090,0],["d2-99983","Lácteos y fiambres","Para cocinar","Queso parmesano goya Paulina","Por kilo (pieza de 5,5 kg)",13890,0],["d2-28b4c","Lácteos y fiambres","Para cocinar","Queso parmesano horma La Vaquita","Por kilo (pieza de 7,5 kg)",12990,0],["d2-c342b","Lácteos y fiambres","Para cocinar","Queso parmesano La Paulina","Por kilo (pieza de 5,7 kg)",11190,0],["d2-ed4f4","Lácteos y fiambres","Para cocinar","Queso parmesano rallado Hacienda del Sur","Unidad de 500 g",11190,0],["d2-151ce","Lácteos y fiambres","Para cocinar","Queso parmesano rallado La Vaquita","Envase de 1 kg",19890,0],["d2-a78f1","Lácteos y fiambres","Para cocinar","Queso parmesano rallado La Vaquita","Sachet de 40 g",990,0],["d2-09f05","Lácteos y fiambres","Para cocinar","Queso parmesano rallado Lanalhue","Envase de 500 g",12090,0],["d2-3eed3","Lácteos y fiambres","Para cocinar","Queso parmesano rallado sahaker Kraft","Sachet de 227 g",6590,0],["d1-95b76","Lácteos y fiambres","Para cocinar","Salsa de queso Agrosilva","Envase de 980 g",3390,0],["d2-96a51","Lácteos y fiambres","Para cocinar","Salsa de queso cheddar","Por kilo (pieza de 3 kg)",19390,0],["d2-c7aaa","Lácteos y fiambres","Queso crema","Queso crema Hacienda del Sur","Barra de 1,36 kg",12190,0],["d2-157e0","Lácteos y fiambres","Queso crema","Queso crema Heritage","Envase de 226 g",3690,0],["d2-66d18","Lácteos y fiambres","Queso crema","Queso crema La Vaquita","Envase de 227 g",3690,0],["d2-bbfd6","Lácteos y fiambres","Queso crema","Queso crema President","Envase de 1,36 kg",14590,0],["d2-ceb09","Lácteos y fiambres","Queso crema","Queso crema Reny Picot","Envase de 1,36 kg",13690,0],["d2-69cdb","Lácteos y fiambres","Queso crema","Queso crema Schreiber","Pieza de 1,36 kg",15890,0],["d2-ad28e","Lácteos y fiambres","Queso crema","Queso crema Zana Foods Reny Picot","Pieza de 1,36 kg",12190,0],["d2-290f4","Lácteos y fiambres","Quesos en trozo","Queso ahumado Los Tilos","Envase de 250 g",5190,0],["d2-8bfd2","Lácteos y fiambres","Quesos en trozo","Queso brie President torta","Por kilo (pieza de 3,75 kg)",19490,0],["d2-a4c3c","Lácteos y fiambres","Quesos en trozo","Queso de cabra Don Humberto de Ovalle","1 kg",13690,0],["d2-428b9","Lácteos y fiambres","Quesos en trozo","Queso emmental gruyere President","Por kilo (pieza de 1,8 kg)",23190,0],["d2-cf41f","Lácteos y fiambres","Quesos en trozo","Queso fresco La Vaquita","Por kilo (pieza de 2,4 kg)",6590,0],["d2-d2ce0","Lácteos y fiambres","Quesos en trozo","Queso fresco La Vaquita","Envase de 400 g",3690,0],["d2-32c05","Lácteos y fiambres","Quesos en trozo","Queso mantecoso barra Hacienda del Sur","Por kilo (pieza de 3,5 kg)",9290,0],["d2-3134c","Lácteos y fiambres","Quesos en trozo","Queso mantecoso Fundo Runca de Valdivia","Por kilo (pieza de 9 kg)",10790,0],["d2-a79b6","Lácteos y fiambres","Quesos en trozo","Queso mantecoso Huilma","Por kilo (pieza de 9 kg)",10390,0],["d2-11f8b","Lácteos y fiambres","Quesos en trozo","Queso petit brie trozo","Envase de 125 g",5590,0],["d2-ef869","Lácteos y fiambres","Quesos laminados","Queso cheddar laminado Kraft americano","Por kilo (pieza de 2,27 kg)",12990,0],["d2-eeb30","Lácteos y fiambres","Quesos laminados","Queso cheddar laminado Los Alerces","Sachet de 160 g",2090,0],["d2-d06a6","Lácteos y fiambres","Quesos laminados","Queso cheddar sucedáneo laminado","Por kilo (pieza de 2,27 kg)",8290,0],["d2-05f8b","Lácteos y fiambres","Quesos laminados","Queso gouda laminado President","Sachet de 400 g",4590,0],["d2-2083c","Lácteos y fiambres","Quesos laminados","Queso laminado chanco La Vaquita","Sachet de 400 g",4290,0],["d2-a5a06","Lácteos y fiambres","Quesos laminados","Queso laminado gouda Fondi","2 paquetes de 500 g (1 kg)",8990,0],["d2-c6eaf","Lácteos y fiambres","Quesos laminados","Queso laminado gouda Hacienda del Sur","4 paquetes de 250 g (1 kg)",10190,0],["d2-23e26","Lácteos y fiambres","Quesos laminados","Queso laminado gouda Hacienda del Sur","2 paquetes de 500 g (1 kg)",9790,0],["d2-58365","Lácteos y fiambres","Quesos laminados","Queso laminado gouda La Vaquita","4 paquetes de 250 g (1 kg)",10590,0],["d2-09a57","Lácteos y fiambres","Quesos laminados","Queso laminado gouda La Vaquita","Sachet de 400 g",4390,0],["d2-7728e","Lácteos y fiambres","Quesos laminados","Queso laminado mantecoso Hacienda del Sur","4 paquetes de 250 g (1 kg)",10390,0],["d2-8987b","Lácteos y fiambres","Quesos laminados","Queso laminado mantecoso Hacienda del Sur","2 paquetes de 500 g (1 kg)",9990,0],["d2-e1fb4","Lácteos y fiambres","Quesos laminados","Queso laminado mantecoso La Vaquita","4 paquetes de 250 g (1 kg)",11590,0],["d2-f0ee4","Lácteos y fiambres","Quesos laminados","Queso laminado mantecoso La Vaquita","Sachet de 400 g",4490,0],["d2-3ecce","Lácteos y fiambres","Quesos laminados","Queso mozzarella laminado La Vaquita","2 paquetes de 500 g (1 kg)",12190,0],["d3-aac04","Frutos secos y dulces","Almendras y nueces","Almendra entera","Por kilo, a granel",13390,{"sup":14700,"txt":"Súper: $14.700 el kg (700 g a $10.290)"}],["d3-c21e2","Frutos secos y dulces","Almendras y nueces","Nuez mariposa","Por kilo, a granel",11690,{"sup":20700,"txt":"Súper: $20.700 el kg (700 g a $14.490)"}],["d3-844ff","Frutos secos y dulces","Almendras y nueces","Nuez partida","Por kilo, a granel",10290,0],["d3-aad65","Frutos secos y dulces","Almendras y nueces","Pistacho salado kg","1 kg",20990,0],["d3-7466e","Frutos secos y dulces","Chocolates y galletas","Caribeño coco","Envase de 1,5 kg",12990,0],["d3-6131f","Frutos secos y dulces","Chocolates y galletas","Cholito dominó","Por kilo, a granel",5690,0],["d3-4a75b","Frutos secos y dulces","Chocolates y galletas","Cholito kg","1 kg",5490,0],["d3-6cba4","Frutos secos y dulces","Chocolates y galletas","Cocadas","Bandeja de 60 unidades",4290,0],["d3-a8291","Frutos secos y dulces","Chocolates y galletas","Cuchufli","Bandeja de aprox. 90 unidades",4290,0],["d3-89ffc","Frutos secos y dulces","Chocolates y galletas","Cuchufli bañado en chocolate","Bandeja de 50 unidades",4290,0],["d3-3572a","Frutos secos y dulces","Chocolates y galletas","Cuchufli mixto chocolate","Bandeja de 50 unidades",4290,0],["d3-ad5da","Frutos secos y dulces","Chocolates y galletas","Mini merengue","Envase de 300 g",2390,0],["d3-53c7a","Frutos secos y dulces","Chocolates y galletas","Trufa","Bandeja de 60 unidades",4290,0],["d3-bfa5b","Frutos secos y dulces","Fruta deshidratada","Banana chips","Por kilo, a granel",7990,0],["d3-2f296","Frutos secos y dulces","Fruta deshidratada","Cranberry","Por kilo, a granel",8490,0],["d3-63c3b","Frutos secos y dulces","Fruta deshidratada","Dátiles sin carozo","Por kilo, a granel",6090,0],["d3-5589f","Frutos secos y dulces","Fruta deshidratada","Gomitas bananas Docile","Por kilo, a granel",5990,0],["d3-5718c","Frutos secos y dulces","Fruta deshidratada","Pasas Golden","Por kilo, a granel",7390,0],["d3-99ad3","Frutos secos y dulces","Gomitas","Gomitas culebras ácidas Docile","Por kilo, a granel",5990,0],["d3-49a4c","Frutos secos y dulces","Gomitas","Gomitas moras Docile","Por kilo, a granel",5990,0],["d3-808ab","Frutos secos y dulces","Gomitas","Guaguita kg","1 kg",5490,0],["d3-f01f1","Frutos secos y dulces","Gomitas","Malva coco kg","1 kg",5790,0],["d3-31a0d","Frutos secos y dulces","Maní","Maní confitado arándano kg","1 kg",3690,0],["d3-18ad0","Frutos secos y dulces","Maní","Maní confitado capuccino kg","1 kg",3690,0],["d3-361d2","Frutos secos y dulces","Maní","Maní confitado tropical","Por kilo, a granel",3690,0],["d3-1ff49","Frutos secos y dulces","Maní","Maní frambuesa kg","1 kg",3690,0],["d3-23873","Frutos secos y dulces","Maní","Maní frutilla kg","1 kg",3690,0],["d3-5aa95","Frutos secos y dulces","Maní","Maní japonés ají suave Crokissimo","Por kilo, a granel",5490,0],["d3-ff8e5","Frutos secos y dulces","Maní","Maní japonés mixto kg","1 kg",5690,0],["d3-61749","Frutos secos y dulces","Maní","Maní japonés natural Crokissimo","Por kilo, a granel",5490,0],["d3-43095","Frutos secos y dulces","Maní","Maní merken kg","1 kg",4190,0],["d3-3d306","Frutos secos y dulces","Maní","Maní natural café kg","1 kg",3690,0],["d3-e7397","Frutos secos y dulces","Maní","Maní natural rojo kg","1 kg",3690,0],["d3-899d9","Frutos secos y dulces","Maní","Maní plátano kg","1 kg",3690,0],["d3-05f87","Frutos secos y dulces","Maní","Maní salado kg","1 kg",4190,0],["d3-0ddf3","Frutos secos y dulces","Maní","Maní sin sal","Por kilo, a granel",4190,0],["d3-3952d","Frutos secos y dulces","Mix de frutos secos","Mix 4 frutos secos","Por kilo, a granel",6790,0],["d3-7b7c9","Frutos secos y dulces","Mix de frutos secos","Mix tropical frutos secos","Por kilo, a granel",7290,0],["d3-32beb","Frutos secos y dulces","Semillas y avena","Chía","Por kilo, a granel",5790,0],["d3-d8be7","Frutos secos y dulces","Semillas y avena","Semilla de zapallo","Por kilo, a granel",8890,0],["d2-04172","Despensa","Aceites y aceitunas","Aceite de oliva extra virgen 5 L","Bidón de 5 L",35990,0],["d2-37081","Despensa","Aceites y aceitunas","Aceite de oliva extra virgen Viejo Oliva 500 ml","Botella de 500 ml",5290,0],["d2-9cd01","Despensa","Aceites y aceitunas","Aceite de oliva extra virgen Viejo Olivo 1 L","Botella de 1 L",9590,0],["d1-09662","Despensa","Aceites y aceitunas","Aceite maravilla Camilo Ferrón 10 l","Bidón",27790,0],["d1-731b2","Despensa","Aceites y aceitunas","Aceite maravilla Maxi Frits 10 l","Bidón",29390,0],["d2-f6161","Despensa","Aceites y aceitunas","Aceitunas negras deshuesadas","Bolsa de 1,7 kg",9090,0],["d2-455cc","Despensa","Aceites y aceitunas","Aceitunas negras en rodajas","Bolsa de 1,7 kg",8290,0],["d2-42a2d","Despensa","Aceites y aceitunas","Aceitunas verdes deshuesadas","Bolsa de 1,7 kg",8790,0],["d2-be177","Despensa","Aceites y aceitunas","Aceitunas verdes en rodajas","Bolsa de 1,7 kg",8890,0],["d2-25d24","Despensa","Conservas","Fondos de alcachofa cortados en cuatro","Tarro de 2,5 kg",14390,0],["d2-12212","Despensa","Conservas","Jamón serrano español Porxas","Sachet de 500 g",14190,0],["d2-dca21","Despensa","Conservas","Nuez corte mariposa","1 kg",12990,0],["d2-dc727","Despensa","Conservas","Palmitos en rodajas Esmeralda","Tarro de 800 g",4590,0],["d2-eab99","Despensa","Conservas","Palmitos enteros en tarro Doña Alicia","Tarro de 800 g",5790,0],["d2-a6549","Despensa","Conservas","Panko","Envase de 1 kg",3590,0],["d2-ee51a","Despensa","Conservas","Pimentón en tiras","Tarro de 3 kg",12490,0],["d2-08c34","Despensa","Conservas","Tomate en tarro pelado Greta de Italia","Tarro",7490,0],["d2-7187b","Despensa","Conservas","Tomate entero en conserva pelado La Rosina 2,5 kg","Tarro",7890,0],["d2-94605","Despensa","Conservas","Tomate entero pelado La Renata 2,9 kg","Tarro",9190,0],["d2-73ed0","Despensa","Conservas","Tomate italiano pomodoro Mateo 2,5 kg","Tarro",9190,0],["d2-2ef0e","Despensa","Conservas","Tomates triturados Renata botella 910 g","Botella",3590,0],["d2-6550c","Despensa","Conservas","Triple concentrado de tomate Carozzi","Bolsa de 3 kg",10290,0],["d2-08881","Despensa","Legumbres","Garbanzos","Envase de 1 kg",3290,0],["d2-289c4","Despensa","Legumbres","Lentejas nuevas 6mm","Envase de 1 kg",2690,0],["d2-a1a72","Despensa","Legumbres","Porotos burros del año","1 kg",3990,0],["d2-ee201","Despensa","Legumbres","Porotos coscorron","1 kg",3390,0],["d2-19ea8","Despensa","Miel","Miel de abeja orgánica","Pote de 1 kg",6490,0],["d2-dedc7","Despensa","Miel","Miel de abeja orgánica","Pote de 500 g",3590,0],["d1-43b18","Despensa","Salsas y aderezos","Ají crema Don Juan","Envase de 900 g",1890,0],["d1-f522c","Despensa","Salsas y aderezos","Americana Agrosilva","Envase de 1 kg",2890,0],["d1-d3d96","Despensa","Salsas y aderezos","Americana Don Juan","Envase de 1 kg",5090,0],["d1-ec2b3","Despensa","Salsas y aderezos","Chucrut Agrosilva","Envase de 1 kg",2990,0],["d1-8071e","Despensa","Salsas y aderezos","Chucrut Don Juan","Envase de 1 kg",4190,0],["d1-3a0f4","Despensa","Salsas y aderezos","Ketchup Don Juan","Envase de 900 g",2790,0],["d1-fca29","Despensa","Salsas y aderezos","Mayonesa casera Don Juan","Envase de 900 g",2690,0],["d1-bad65","Despensa","Salsas y aderezos","Mayonesa en polvo Delissa","Envase de 500 g",7090,0],["d1-2be18","Despensa","Salsas y aderezos","Mayonesa liviana Agrosilva","Envase de 970 g",2990,0],["d1-5cd0a","Despensa","Salsas y aderezos","Mostaza Don Juan","Envase de 900 g",1890,0],["d2-f393b","Despensa","Salsas y aderezos","Salsa barbecue Carozzi","Envase de 1 kg",2390,0],["d1-93455","Despensa","Salsas y aderezos","Salsa bbq Agrosilva","Envase de 1 kg",3190,0],["d2-c3d9f","Despensa","Salsas y aderezos","Salsa de tomate para pizza","Bolsa de 3 kg",6290,0]],"feat":["d2-96af3","d2-1c622","d2-e7a34","d1-f8b6d","d1-cb296","d1-984ff","d1-f33a7","d1-1b70a","d3-aac04","d3-c21e2","d3-05f87","d3-3952d"]};
+const CATS=[["top","Lo más conveniente","Lo que de verdad sale más barato que en el supermercado."],["hue","Huevos",""],["car","Pollo y carnes",""],["pes","Pescados y mariscos",""],["con","Congelados",""],["lac","Lácteos y fiambres",""],["fru","Frutos secos y dulces",""],["des","Despensa",""]];
+const CK={"Huevos":"hue","Pollo y carnes":"car","Pescados y mariscos":"pes","Congelados":"con","Lácteos y fiambres":"lac","Frutos secos y dulces":"fru","Despensa":"des"};
+const $=id=>document.getElementById(id);
+const clp=n=>"$"+Math.round(n).toLocaleString("es-CL");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const ITEMS=RAW.items.map(x=>({id:x[0],cat:x[1],k:CK[x[1]],sub:x[2],n:x[3],u:x[4],pv:x[5],cmp:x[6]||null}));
+const BY={};ITEMS.forEach(p=>BY[p.id]=p);
+const FEAT=RAW.feat.map(id=>BY[id]).filter(Boolean);
+const TREE={};ITEMS.forEach(p=>{(TREE[p.k]=TREE[p.k]||[]);if(!TREE[p.k].includes(p.sub))TREE[p.k].push(p.sub)});
+const ls={get(k,f){try{const v=JSON.parse(localStorage.getItem(k));return v==null?f:v}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let cart=ls.get("pdv-cart7",{});Object.keys(cart).forEach(k=>{if(!BY[k]||!(cart[k]>0))delete cart[k]});
+let cur="top";const selSub={};
+const h=(location.hash||"").replace("#","");if(CATS.some(c=>c[0]===h))cur=h;
+
+// fecha y textos
+const f=new Date();f.setDate(f.getDate()+((5-f.getDay()+7)%7));
+const fdate=f.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
+const fshort=f.toLocaleDateString("es-CL",{day:"numeric",month:"long"});
+$("fecha").textContent="Próxima entrega: "+fshort;
+$("tEntrega").textContent="Entrega el viernes "+fshort;$("tEntrega2").textContent=HORARIO+", en tu casa.";
+$("sCierre").textContent=CIERRE;
+$("rules").innerHTML=`<span>Pedido mínimo <b>${clp(MINIMO)}</b></span><span>Despacho según tu comuna, desde <b>${clp(DESP_MIN)}</b></span><span>Pedidos hasta el <b>${CIERRE}</b></span>`;
+const ph="+56 9 "+PHONE.slice(3,7)+" "+PHONE.slice(7);$("phone").textContent=ph;$("fPhone").textContent=ph;
+$("sidenote").textContent="Los precios incluyen IVA y se actualizan cada lunes según los precios de las distribuidoras."+(CMP_AL?` Comparación con supermercado según precios publicados en Lider el ${CMP_AL}.`:"");
+$("cmpNote").textContent=CMP_AL?`La comparación con supermercado usa el precio más bajo publicado en Lider (lider.cl) para un producto equivalente el ${CMP_AL}; puede cambiar.`:"";
+$("stamp").textContent=`Precios con IVA, vigentes al ${PRECIOS_AL}. Se revisan automáticamente cada lunes; si un precio cambia entre tu pedido y la compra, te aviso antes de cobrar.`;
+$("how").innerHTML=[`Pedidos hasta el ${CIERRE}; entrega el ${fdate} ${HORARIO}.`,`Pedido mínimo ${clp(MINIMO)} en productos.`,`Despacho según la distancia a tu comuna: desde ${clp(DESP_MIN)}; sobre ${DESP_MAX_KM} km se coordina.`,`No pagas al enviar el pedido: primero te confirmo el total y la disponibilidad. Después pagas hasta el ${PAGO_HASTA}; los pedidos sin pagar a esa hora no entran a la compra del viernes.`,`Si un producto llega en mal estado, avísame ese mismo día con una foto: se descuenta y te devuelvo su valor.`,`Congelados: guárdalos en el freezer apenas los recibas.`].map(t=>`<li>${esc(t)}</li>`).join("");
+
+// comunas, pago, código
+$("cComuna").innerHTML=`<option value="">Comuna</option>`+Object.keys(KM).sort((a,b)=>a.localeCompare(b,"es")).map(c=>`<option>${c}</option>`).join("")+`<option value="otra">Otra comuna</option>`;
+const who=ls.get("pdv-who",{});$("cNombre").value=who.n||"";$("cComuna").value=who.c||"";$("cDir").value=who.a||"";
+if(who.p==="mp")$("pagoMp").checked=true;else if(who.p==="tr")$("pagoTr").checked=true;
+const hasBank=!!(BANCO.cuenta&&BANCO.rut);
+$("trTxt").textContent=hasBank?`a mi cuenta del ${BANCO.banco}. Transfieres el total confirmado y me envías el comprobante.`:"te envío los datos al confirmar tu pedido. Transfieres el total y me mandas el comprobante de tu banco.";
+document.querySelectorAll(".pHasta").forEach(e=>e.textContent=PAGO_HASTA);
+const BANK_TXT=hasBank?`${BANCO.titular}\nRUT ${BANCO.rut}\n${BANCO.banco}\n${BANCO.tipo}\nN.º ${BANCO.cuenta}\n${BANCO.correo}`:"";
+function renderBank(){const b=$("bank");if(!hasBank||pago()!=="tr"){b.hidden=true;return}b.hidden=false;b.innerHTML=`<div class="rc-h">Datos para transferir</div><dl>${[["Titular",BANCO.titular],["RUT",BANCO.rut],["Banco",BANCO.banco],["Tipo",BANCO.tipo],["Cuenta",BANCO.cuenta],["Correo",BANCO.correo]].filter(x=>x[1]).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl><button class="ghost" id="copyBank" type="button">Copiar datos</button><p class="note">Transfiere solo cuando te confirme el total, antes del ${PAGO_HASTA}.</p>`;$("copyBank").onclick=()=>navigator.clipboard.writeText(BANK_TXT).then(()=>toast("Datos copiados"),()=>toast("No se pudo copiar"))}
+let code=ls.get("pdv-code","");function newCode(){const d=new Date();code="PV-"+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"-"+Math.random().toString(36).slice(2,5).toUpperCase();ls.set("pdv-code",code)}
+if(!code)newCode();
+function feeOf(c){if(!c)return{fee:0,state:"none"};if(c==="otra")return{fee:0,state:"coord"};const km=KM[c];if(km==null||km>DESP_MAX_KM)return{fee:0,state:"coord",km};
+  return{fee:Math.max(DESP_MIN,Math.ceil((DESP_BASE+DESP_KM*km)/500)*500),state:"ok",km}}
+function pago(){const r=document.querySelector('input[name="pago"]:checked');return r?r.value:""}
+function saving(p){return p.cmp&&p.cmp.sup&&p.cmp.sup>p.pv?p.cmp.sup-p.pv:0}
+
+// render
+function icon(k,cls){return `<span class="tile k-${k}${cls?" "+cls:""}"><svg class="ic"><use href="#i-${k}"/></svg></span>`}
+function renderCats(){
+  $("cats").innerHTML=CATS.map(([k,l])=>`<button class="cat" data-cat="${k}" aria-current="${k===cur&&!$("q").value.trim()}">${icon(k)}<span>${esc(l)}</span><span class="n">${k==="top"?FEAT.length:ITEMS.filter(p=>p.k===k).length}</span></button>`).join("");
+}
+function ctl(id){const q=cart[id]||0;
+  return q?`<div class="step"><button data-dec="${id}" aria-label="Quitar uno">−</button><input type="number" min="0" inputmode="numeric" value="${q}" data-qty="${id}" aria-label="Cantidad"><button data-inc="${id}" aria-label="Agregar uno">+</button></div>`
+          :`<button class="plus" data-inc="${id}" aria-label="Agregar ${esc(BY[id].n)}">+ Agregar</button>`}
+function row(p,showSub){
+  const sv=saving(p);
+  const cmp=p.cmp?`<div class="cmp">${sv?`<span class="sv">Ahorras ${clp(sv)}</span>`:""}${esc(p.cmp.txt)}</div>`:"";
+  return `<div class="row${cart[p.id]?" on":""}" data-row="${p.id}">${icon(p.k)}<div class="info"><div class="nm">${esc(p.n)}</div><div class="u">${esc(showSub?p.sub+" · "+p.u:p.u)}</div>${cmp}</div><div class="right"><div class="pr">${clp(p.pv)}${/^Por kilo/.test(p.u)?'<small>/kg</small>':""}</div><div class="ctl">${ctl(p.id)}</div></div></div>`}
+function render(){
+  renderCats();
+  const q=norm($("q").value.trim());
+  if(q){
+    const it=ITEMS.filter(p=>norm(p.n+" "+p.sub+" "+p.cat).includes(q));
+    $("vTitle").textContent="Resultados";$("vCount").textContent=`${it.length} producto${it.length===1?"":"s"}`;$("vLead").hidden=true;$("subs").innerHTML="";$("subs").hidden=true;
+    $("list").innerHTML=it.length?it.map(p=>row(p,true)).join(""):`<p class="empty">No tenemos "${esc($("q").value)}" por ahora. Escríbeme por WhatsApp y veo si lo puedo conseguir.</p>`;
+    return;
+  }
+  const c=CATS.find(x=>x[0]===cur);
+  $("vTitle").textContent=c[1];
+  if(cur==="top"){
+    $("vCount").textContent=`${FEAT.length} productos`;$("vLead").hidden=false;$("vLead").textContent=(CMP_AL?c[2]:"Los productos destacados de esta semana.")+" El catálogo completo está en las otras categorías.";
+    $("subs").innerHTML="";$("subs").hidden=true;
+    const g={},o=[];FEAT.forEach(p=>{if(!g[p.cat]){g[p.cat]=[];o.push(p.cat)}g[p.cat].push(p)});
+    $("list").innerHTML=o.map(k=>`<div class="grp">${esc(k)}</div>`+g[k].map(p=>row(p,false)).join("")).join("");
+    return;
+  }
+  const subs=TREE[cur];if(!selSub[cur]||!subs.includes(selSub[cur]))selSub[cur]=subs[0];
+  $("vCount").textContent=`${ITEMS.filter(p=>p.k===cur).length} productos`;$("vLead").hidden=true;
+  $("subs").hidden=subs.length<=1;
+  $("subs").innerHTML=subs.length>1?subs.map(s=>`<button data-sub="${esc(s)}" aria-pressed="${s===selSub[cur]}">${esc(s)}</button>`).join(""):"";
+  $("list").innerHTML=ITEMS.filter(p=>p.k===cur&&p.sub===selSub[cur]).map(p=>row(p,false)).join("");
+}
+function refresh(id){document.querySelectorAll(`[data-row="${id}"]`).forEach(r=>{r.classList.toggle("on",!!cart[id]);r.querySelector(".ctl").innerHTML=ctl(id)})}
+function setQty(id,n){n=Math.max(0,Math.min(999,Math.floor(n)||0));if(n)cart[id]=n;else delete cart[id];ls.set("pdv-cart7",cart);refresh(id);totals();if(!$("sheet").hidden)renderCart()}
+function totals(){let n=0,t=0,s=0;Object.keys(cart).forEach(id=>{n+=cart[id];t+=cart[id]*BY[id].pv;s+=cart[id]*saving(BY[id])});
+  const F=feeOf($("cComuna").value), fee=n?F.fee:0;
+  $("bar").dataset.empty=n?"0":"1";$("barCount").textContent=`Ver pedido · ${n} ${n===1?"producto":"productos"}`;$("barTotal").textContent=clp(t+fee);
+  $("sub").textContent=clp(t);
+  $("feeLbl").textContent=F.state==="ok"?`Despacho a ${$("cComuna").value} (~${F.km} km)`:"Despacho";
+  $("fee").textContent=F.state==="ok"?clp(fee):F.state==="coord"?"A coordinar":"Elige tu comuna";
+  $("saveLine").hidden=!s;$("saveAmt").textContent=clp(s);
+  $("grand").textContent=clp(t+fee)+(F.state==="ok"?"":" + despacho");
+  return{n,t,fee,F,s,ok:t>=MINIMO}}
+function orderText(){const{t,fee,F}=totals();let s=`Hola Esteban! Quiero hacer este pedido para el ${fdate}:\n`;
+  const ids=Object.keys(cart);const cats=[...new Set(ids.map(id=>BY[id].cat))];
+  cats.forEach(c=>{s+=`\n*${c}*\n`;ids.filter(id=>BY[id].cat===c).forEach(id=>{const p=BY[id];s+=`• ${cart[id]} × ${p.n} (${p.u}) — ${clp(cart[id]*p.pv)} [${id}]\n`})});
+  s+=`\nProductos: ${clp(t)}\nDespacho: ${F.state==="ok"?clp(fee)+` (~${F.km} km)`:"a coordinar"}\n*Total: ${clp(t+fee)}${F.state==="ok"?"":" + despacho"}*\n`;
+  const cm=$("cComuna").value;
+  s+=`\nCódigo de pedido: ${code}\nPago: ${pago()==="mp"?"Mercado Pago (envíame el link)":"Transferencia"}\nNombre: ${$("cNombre").value.trim()}\nComuna: ${cm==="otra"?"Otra (a coordinar)":cm}\nDirección: ${$("cDir").value.trim()}\n`;return s}
+function renderCart(){const ids=Object.keys(cart);renderBank();
+  $("lines").innerHTML=ids.length?[...new Set(ids.map(id=>BY[id].cat))].map(c=>`<div class="grp">${esc(c)}</div>`+ids.filter(id=>BY[id].cat===c).map(id=>{const p=BY[id];return `<div class="row" data-row="${id}"><div class="info"><div class="nm">${esc(p.n)}</div><div class="u">${esc(p.u)} · ${clp(p.pv)} c/u</div></div><div class="right"><div class="pr">${clp(cart[id]*p.pv)}</div><div class="ctl">${ctl(id)}</div></div></div>`}).join("")).join("")
+    :`<p class="empty">Aún no agregas productos.</p>`;
+  const{t,ok,n,F}=totals();
+  const falta=[!$("cNombre").value.trim()&&"tu nombre",!$("cComuna").value&&"tu comuna",!$("cDir").value.trim()&&"tu dirección",!pago()&&"cómo vas a pagar"].filter(Boolean);
+  const mw=$("minwarn");
+  if(n&&!ok){mw.hidden=false;mw.innerHTML=`Te faltan <b>${clp(MINIMO-t)}</b> para el pedido mínimo de ${clp(MINIMO)}.<div class="meter"><i style="width:${Math.min(100,t/MINIMO*100)}%"></i></div>`}
+  else if(n&&falta.length){mw.hidden=false;mw.textContent="Para enviar falta: "+falta.join(", ")+"."}
+  else if(n&&F.state==="coord"){mw.hidden=false;mw.textContent="Tu comuna está a más de "+DESP_MAX_KM+" km: el despacho lo coordinamos por WhatsApp antes de pagar."}
+  else mw.hidden=true;
+  const can=n&&ok&&!falta.length;
+  const fld=!$("cNombre").value.trim()?"cNombre":!$("cComuna").value?"cComuna":!$("cDir").value.trim()?"cDir":!pago()?"pagoTr":"";
+  BLOCK=!n?{m:"Agrega al menos un producto.",f:""}:!ok?{m:`Te faltan ${clp(MINIMO-t)} para el mínimo de ${clp(MINIMO)}.`,f:""}:falta.length?{m:"Para enviar falta: "+falta.join(", ")+".",f:fld}:null;
+  $("why").hidden=!BLOCK||!n;if(BLOCK)$("why").textContent=BLOCK.m;
+  $("wa").setAttribute("aria-disabled",can?"false":"true");
+  $("wa").href=can?"https://wa.me/"+PHONE+"?text="+encodeURIComponent(orderText()):"#";
+}
+function showReceipt(){const{t,fee,F}=totals();const p=pago();
+  $("receipt").hidden=false;
+  $("receipt").innerHTML=`<div class="rc-h">Comprobante de pedido</div><div class="rc-code">${code}</div>
+  <div class="rc-row"><span>Total</span><b>${clp(t+fee)}${F.state==="ok"?"":" + despacho"}</b></div>
+  <div class="rc-row"><span>Entrega</span><b>${esc(fdate)}</b></div>
+  <ol class="rc-steps"><li>Envía el mensaje en WhatsApp (si no se abrió, usa "Copiar").</li>
+  <li>Te confirmo el total y la disponibilidad. Todavía no pagas nada.</li>
+  <li>${p==="mp"?"Te llega un link de Mercado Pago por el total; al pagar, Mercado Pago te envía el comprobante.":"Transfieres el total confirmado"+(hasBank?` a ${esc(BANCO.banco)}, ${esc(BANCO.tipo)} ${esc(BANCO.cuenta)}, RUT ${esc(BANCO.rut)}`:"")+" y me mandas el comprobante."} Hazlo antes del <b>${PAGO_HASTA}</b> y pon el código <b>${code}</b> en el comentario.</li></ol>
+  <p class="note">Guarda esta pantalla con una captura.</p>
+  <button class="ghost" id="newOrder" style="width:100%">Hacer otro pedido</button>`;
+  $("receipt").scrollIntoView({block:"nearest"});
+  $("newOrder").onclick=()=>{cart={};ls.set("pdv-cart7",cart);newCode();$("receipt").hidden=true;totals();renderCart();render();closeSheet()};
+}
+function toList(){const y=$("vTitle").getBoundingClientRect().top+window.scrollY-80;if(window.scrollY>y+10||window.innerWidth<960)window.scrollTo({top:Math.max(0,y),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.cat){cur=b.dataset.cat;$("q").value="";try{history.replaceState(null,"","#"+cur)}catch(x){}render();toList();return}
+  if(b.dataset.sub){selSub[cur]=b.dataset.sub;render();return}
+  const id=b.dataset.inc||b.dataset.dec;if(id)setQty(id,(cart[id]||0)+(b.dataset.dec?-1:1));
+});
+document.addEventListener("change",e=>{const id=e.target.dataset&&e.target.dataset.qty;if(id)setQty(id,parseInt(e.target.value,10))});
+let qt;$("q").addEventListener("input",()=>{clearTimeout(qt);qt=setTimeout(render,150)});
+function closeSheet(){$("sheet").hidden=true;document.documentElement.classList.remove("lock");render()}
+$("openCart").addEventListener("click",()=>{renderCart();$("sheet").hidden=false;document.documentElement.classList.add("lock");$("closeCart").focus({preventScroll:true})});
+$("closeCart").addEventListener("click",closeSheet);
+$("sheet").addEventListener("click",e=>{if(e.target===$("sheet"))closeSheet()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("sheet").hidden)closeSheet()});
+function saveWho(){ls.set("pdv-who",{n:$("cNombre").value,c:$("cComuna").value,a:$("cDir").value,p:pago()});renderCart()}
+["cNombre","cDir"].forEach(i=>$(i).addEventListener("input",saveWho));
+$("cComuna").addEventListener("change",saveWho);
+document.querySelectorAll('input[name="pago"]').forEach(r=>r.addEventListener("change",saveWho));
+$("wa").addEventListener("click",e=>{if($("wa").getAttribute("aria-disabled")==="false"){setTimeout(showReceipt,300);return}e.preventDefault();renderCart();if(BLOCK){toast(BLOCK.m);if(BLOCK.f){const el=$(BLOCK.f);el.scrollIntoView({block:"center"});el.focus({preventScroll:true})}}});
+let BLOCK=null;
+$("copy").addEventListener("click",()=>{const{n,ok}=totals();if(!n){toast("Agrega al menos un producto");return}if(!ok){toast("Aún no llegas al pedido mínimo");return}if($("wa").getAttribute("aria-disabled")==="true"){toast("Completa tus datos de entrega y pago");return}const s=orderText();showReceipt();
+  navigator.clipboard.writeText(s).then(()=>toast("Pedido copiado"),()=>{const ta=document.createElement("textarea");ta.value=s;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Pedido copiado")}catch(x){toast("No se pudo copiar")}ta.remove()})});
+let armed=false;$("clear").addEventListener("click",e=>{if(!armed){armed=true;e.target.textContent="¿Seguro?";setTimeout(()=>{armed=false;e.target.textContent="Vaciar pedido"},2500);return}
+  cart={};ls.set("pdv-cart7",cart);newCode();$("receipt").hidden=true;armed=false;e.target.textContent="Vaciar pedido";totals();renderCart();render()});
+let tt;function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,1800)}
+render();totals();
+})();
+</script>
+
+</body></html>
