@@ -51,6 +51,7 @@ svg.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;str
 .steps b{color:var(--ink)}
 .rules{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.84rem;color:var(--muted)}
 .rules b{color:var(--ink)}
+.rules .late{flex-basis:100%;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:8px 12px;margin-top:4px}
 @media (max-width:640px){.trust,.steps{grid-template-columns:1fr}.trust div{padding:9px 12px}}
 
 /* estructura */
@@ -263,7 +264,8 @@ const PHONE="56979728587";        // WhatsApp que recibe los pedidos
 const MINIMO=25000;               // pedido mínimo en productos
 const DESP_BASE=1000, DESP_KM=250, DESP_MIN=1500, DESP_MAX_KM=20;  // despacho = base + km × valor, redondeado a $500
 const KM=__KM__;
-const CIERRE="miércoles a las 20:00";
+const CIERRE="jueves a las 12:00";
+const CIERRE_HORA=12;              // los pedidos cierran el jueves a esta hora; después pasan al viernes siguiente
 const HORARIO="entre 10:00 y 13:00";
 const BANCO={titular:"Esteban Rosset",rut:"17.169.811-1",banco:"Banco de Chile",tipo:"Cuenta corriente",cuenta:"1695058200",correo:"e.rosset.a@gmail.com"};
 const PAGO_HASTA="jueves a las 20:00";   // pedido no pagado a esta hora no entra a la compra del viernes  // si lo completas, se muestra al elegir transferencia
@@ -287,17 +289,19 @@ let cur="top";const selSub={};
 const h=(location.hash||"").replace("#","");if(CATS.some(c=>c[0]===h))cur=h;
 
 // fecha y textos
-const f=new Date();f.setDate(f.getDate()+((5-f.getDay()+7)%7));
+const now=new Date();const f=new Date(now);f.setHours(0,0,0,0);f.setDate(f.getDate()+((5-f.getDay()+7)%7));
+const cut=new Date(f);cut.setDate(f.getDate()-1);cut.setHours(CIERRE_HORA,0,0,0);
+const LATE=now>=cut;if(LATE)f.setDate(f.getDate()+7);
 const fdate=f.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
 const fshort=f.toLocaleDateString("es-CL",{day:"numeric",month:"long"});
 $("fecha").textContent="Próxima entrega: "+fshort;
 $("tEntrega").textContent="Entrega el viernes "+fshort;$("tEntrega2").textContent=HORARIO+", en tu casa.";
 $("sCierre").textContent=CIERRE;
-$("rules").innerHTML=`<span>Pedido mínimo <b>${clp(MINIMO)}</b></span><span>Despacho según tu comuna, desde <b>${clp(DESP_MIN)}</b></span><span>Pedidos hasta el <b>${CIERRE}</b></span>`;
+$("rules").innerHTML=`<span>Pedido mínimo <b>${clp(MINIMO)}</b></span><span>Despacho según tu comuna, desde <b>${clp(DESP_MIN)}</b></span><span>Pedidos hasta el <b>${CIERRE}</b></span>`+(LATE?`<span class="late">Los pedidos de esta semana ya cerraron: lo que pidas ahora se entrega el <b>${fdate}</b>.</span>`:"");
 const ph="+56 9 "+PHONE.slice(3,7)+" "+PHONE.slice(7);$("phone").textContent=ph;$("fPhone").textContent=ph;
-$("sidenote").textContent="Los precios incluyen IVA y se actualizan cada lunes según los precios de las distribuidoras."+(CMP_AL?` Comparación con supermercado según precios publicados en Lider el ${CMP_AL}.`:"");
+$("sidenote").textContent="Los precios incluyen IVA y se actualizan cada mañana según los precios de las distribuidoras."+(CMP_AL?` Comparación con supermercado según precios publicados en Lider el ${CMP_AL}.`:"");
 $("cmpNote").textContent=CMP_AL?`La comparación con supermercado usa el precio más bajo publicado en Lider (lider.cl) para un producto equivalente el ${CMP_AL}; puede cambiar.`:"";
-$("stamp").textContent=`Precios con IVA, vigentes al ${PRECIOS_AL}. Se revisan automáticamente cada lunes; si un precio cambia entre tu pedido y la compra, te aviso antes de cobrar.`;
+$("stamp").textContent=`Precios con IVA, vigentes al ${PRECIOS_AL}. Se revisan automáticamente cada mañana; si un precio cambia entre tu pedido y la compra, te aviso antes de cobrar.`;
 $("how").innerHTML=[`Pedidos hasta el ${CIERRE}; entrega el ${fdate} ${HORARIO}.`,`Pedido mínimo ${clp(MINIMO)} en productos.`,`Despacho según la distancia a tu comuna: desde ${clp(DESP_MIN)}; sobre ${DESP_MAX_KM} km se coordina.`,`No pagas al enviar el pedido: primero te confirmo el total y la disponibilidad. Después pagas hasta el ${PAGO_HASTA}; los pedidos sin pagar a esa hora no entran a la compra del viernes.`,`Si un producto llega en mal estado, avísame ese mismo día con una foto: se descuenta y te devuelvo su valor.`,`Congelados: guárdalos en el freezer apenas los recibas.`].map(t=>`<li>${esc(t)}</li>`).join("");
 
 // comunas, pago, código

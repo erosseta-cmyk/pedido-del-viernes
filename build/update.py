@@ -1,4 +1,4 @@
-"""Actualización semanal del catálogo Pedido del Viernes.
+"""Actualización diaria (9:00 de Chile) del catálogo Pedido del Viernes.
 
 Lee los precios actuales de las tres distribuidoras, mueve cada precio de venta en el
 mismo porcentaje que cambió su precio de compra y vuelve a generar index.html.
