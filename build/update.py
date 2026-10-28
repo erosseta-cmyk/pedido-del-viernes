@@ -4,6 +4,7 @@ Lee los precios actuales de las tres distribuidoras, mueve cada precio de venta 
 mismo porcentaje que cambió su precio de compra y vuelve a generar index.html.
 
 Frenos de seguridad:
+  - Un salto de más de 25 % oculta el producto; si el mismo precio se repite 3 días seguidos se aplica.
   - Si una distribuidora no responde o se reconocen menos del 85 % de sus productos,
     sus precios quedan como estaban.
   - Si un precio de compra cambia más de un 25 % de una semana a otra, no se toca y
@@ -26,7 +27,7 @@ BASE_ENC = os.path.join(B, 'base.enc')
 ALIAS = os.path.join(B, 'artico_alias.json')
 UA = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
       'Accept-Language': 'es-CL,es;q=0.9'}
-MIN_FOUND, MAX_JUMP, CMP_DAYS = 0.85, 0.25, 28
+MIN_FOUND, MAX_JUMP, CMP_DAYS, HOLD_DAYS = 0.85, 0.25, 28, 3
 NAMES = {'A': 'Ártico Congelados', 'R': 'Río Maipo', 'P': 'El Palomo'}
 
 
@@ -214,7 +215,7 @@ def update(dump=False):
         m1 = metric(it, f)
         if not m1:
             continue
-        if not it['on']:
+        if not it['on'] and not it.get('hold'):
             it['on'] = True
             back.append(it)
         m0 = base.get(it['id'])
@@ -222,16 +223,38 @@ def update(dump=False):
             base[it['id']] = m1
             continue
         r = m1 / m0
+        if abs(r - 1) <= MAX_JUMP and it.pop('hold', None):
+            it['on'] = True               # el salto era un error de lectura: vuelve a mostrarse
         if abs(r - 1) < 0.01:
             continue
         if abs(r - 1) > MAX_JUMP:
-            held.append((it, m0, m1))
-            continue
+            h = it.get('hold')
+            n = h['n'] + 1 if h and abs(h['m'] / m1 - 1) < 0.01 else 1
+            if n < HOLD_DAYS:
+                it['hold'] = {'m': m1, 'n': n}
+                it['on'] = False          # oculto mientras no se confirme: evita vender bajo costo
+                held.append((it, m0, m1))
+                continue
+            it.pop('hold', None)          # mismo precio 3 días seguidos: es real, se aplica
+            it['on'] = True
         old = it['pv']
         it['pv'] = round90(old * r)
         base[it['id']] = m1
         if it['pv'] != old:
             changes.append((it, old, it['pv'], r))
+    # historial de cambios de precio (para ver qué días suben); solo porcentajes y precios de venta
+    hist = os.path.join(B, 'historial.csv')
+    new = not os.path.exists(hist)
+    with open(hist, 'a', encoding='utf-8') as fh:
+        if new:
+            fh.write('fecha,dia,distribuidora,producto,unidad,cambio_proveedor_pct,precio_venta_antes,precio_venta_ahora,estado\n')
+        hoy = datetime.date.today()
+        dia = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'][hoy.weekday()]
+        q = lambda s: '"' + str(s).replace('"', "'") + '"'
+        for it, a0, b0, r in changes:
+            fh.write(f"{hoy},{dia},{NAMES[it['s']]},{q(it['n'])},{q(it['u'])},{(r - 1) * 100:+.1f},{a0},{b0},aplicado\n")
+        for it, m0, m1 in held:
+            fh.write(f"{hoy},{dia},{NAMES[it['s']]},{q(it['n'])},{q(it['u'])},{(m1 / m0 - 1) * 100:+.1f},{it['pv']},{it['pv']},retenido\n")
     cat['updated'] = datetime.date.today().isoformat()
     json.dump(cat, open(CAT, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     save_base(base)
@@ -242,7 +265,7 @@ def update(dump=False):
     if fail:
         L += ['## ⚠️ Distribuidoras que no se pudieron leer (sus precios quedaron igual)', ''] + [f'- {NAMES[s]}: {why}' for s, why in fail.items()] + ['']
     if held:
-        L += ['## ⚠️ Cambios de más de 25 % que NO se aplicaron (revisa en la página del proveedor)', '',
+        L += ['## ⚠️ Saltos de más de 25 % (producto oculto; si se repite 3 días seguidos se aplica solo)', '',
               '| Producto | Proveedor | Tu precio actual | Cambio proveedor |', '|---|---|---|---|']
         L += [f"| {it['n']} ({it['u']}) | {NAMES[it['s']]} | {clp(it['pv'])} | {(b / a - 1) * 100:+.0f} % |" for it, a, b in held] + ['']
     if changes:

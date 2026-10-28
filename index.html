@@ -3,11 +3,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Pedido del Viernes</title>
-<meta name="description" content="Precios de distribuidora con entrega a domicilio cada viernes. Pides hasta el jueves a las 12:00 y no pagas al pedir.">
+<meta name="description" content="Precios de distribuidora con entrega a domicilio cada viernes. Pides hasta el jueves a las 12:00 y pagas por transferencia.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://erosseta-cmyk.github.io/pedido-del-viernes/">
 <meta property="og:title" content="Pedido del Viernes · Precios de distribuidora en tu casa">
-<meta property="og:description" content="Huevos, pollo, pescados, congelados, quesos y frutos secos. Pides hasta el jueves 12:00, no pagas al pedir y te lo llevo el viernes.">
+<meta property="og:description" content="Huevos, pollo, pescados, congelados, quesos y frutos secos. Pides hasta el jueves 12:00, pagas por transferencia y te lo llevo el viernes.">
 <meta property="og:image" content="https://erosseta-cmyk.github.io/pedido-del-viernes/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,15 +214,15 @@ details.how ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
   </div>
   <section class="hero">
     <h1>Precios de distribuidora, en la puerta de tu casa.</h1>
-    <p>Cada viernes compro por mayor y te llevo tu pedido. Eliges aquí, me lo envías por WhatsApp y pagas recién cuando te confirmo el total.</p>
+    <p>Cada viernes compro por mayor y te llevo tu pedido. Eliges aquí, me lo envías por WhatsApp y pagas por transferencia.</p>
     <div class="trust">
-      <div><svg class="ic"><use href="#i-chk"/></svg><span><b>No pagas al pedir</b><span>Pagas cuando te confirmo, por transferencia o Mercado Pago.</span></span></div>
+      <div><svg class="ic"><use href="#i-chk"/></svg><span><b>Pagas por transferencia</b><span>Al enviar tu pedido, hasta el jueves a las 20:00.</span></span></div>
       <div><svg class="ic"><use href="#i-cal"/></svg><span><b id="tEntrega">Entrega el viernes</b><span id="tEntrega2"></span></span></div>
-      <div><svg class="ic"><use href="#i-shd"/></svg><span><b>Si algo llega malo, no lo pagas</b><span>Se descuenta y te devuelvo su valor. Sin trámites.</span></span></div>
+      <div><svg class="ic"><use href="#i-shd"/></svg><span><b>Si algo falta o llega malo, no lo pagas</b><span>Te devuelvo ese monto el mismo viernes. Sin trámites.</span></span></div>
     </div>
     <ol class="steps">
       <li><span><b>Elige y envía</b> tu pedido por WhatsApp, hasta el <span id="sCierre"></span>.</span></li>
-      <li><span><b>Te confirmo el total</b> y pagas antes del <span class="pHasta"></span>.</span></li>
+      <li><span><b>Transfiere el total</b> y mándame el comprobante, hasta el <span class="pHasta"></span>.</span></li>
       <li><span><b>El viernes te lo llevo</b> a tu casa.</span></li>
     </ol>
     <div class="rules" id="rules"></div>
@@ -264,8 +264,7 @@ details.how ul{margin:6px 0 0;padding-left:18px;display:grid;gap:4px}
     <div class="two"><input class="f" id="cNombre" placeholder="Nombre" aria-label="Nombre" autocomplete="name"><select class="f" id="cComuna" aria-label="Comuna de entrega"></select></div>
     <input class="f" id="cDir" placeholder="Dirección (calle, número, depto)" aria-label="Dirección de entrega" autocomplete="street-address">
     <fieldset class="pay"><legend>¿Cómo vas a pagar?</legend>
-      <label><input type="radio" name="pago" value="tr" id="pagoTr"> <span><b>Transferencia</b> — <span id="trTxt"></span></span></label>
-      <label><input type="radio" name="pago" value="mp" id="pagoMp"> <span><b>Mercado Pago</b> — débito, crédito o saldo. Te envío un link de pago por el total exacto y Mercado Pago te manda el comprobante.</span></label>
+      <label><input type="radio" name="pago" value="tr" id="pagoTr" checked> <span><b>Transferencia</b> — <span id="trTxt"></span></span></label>
     </fieldset>
     <div class="bank" id="bank" hidden></div>
     <details class="how"><summary>Condiciones del pedido</summary><ul id="how"></ul></details>
@@ -322,18 +321,18 @@ $("rules").innerHTML=`<span>Pedido mínimo <b>${clp(MINIMO)}</b></span><span>Des
 const ph="+56 9 "+PHONE.slice(3,7)+" "+PHONE.slice(7);$("phone").textContent=ph;$("fPhone").textContent=ph;
 $("sidenote").textContent="Los precios incluyen IVA y se actualizan cada mañana según los precios de las distribuidoras."+(CMP_AL?` Comparación con supermercado según precios publicados en Lider el ${CMP_AL}.`:"");
 $("cmpNote").textContent=CMP_AL?`La comparación con supermercado usa el precio más bajo publicado en Lider (lider.cl) para un producto equivalente el ${CMP_AL}; puede cambiar.`:"";
-$("stamp").textContent=`Precios con IVA, vigentes al ${PRECIOS_AL}. Se revisan automáticamente cada mañana; si un precio cambia entre tu pedido y la compra, te aviso antes de cobrar.`;
-$("how").innerHTML=[`Pedidos hasta el ${CIERRE}; entrega el ${fdate} ${HORARIO}.`,`Pedido mínimo ${clp(MINIMO)} en productos.`,`Despacho según la distancia a tu comuna: desde ${clp(DESP_MIN)}; sobre ${DESP_MAX_KM} km se coordina.`,`No pagas al enviar el pedido: primero te confirmo el total y la disponibilidad. Después pagas hasta el ${PAGO_HASTA}; los pedidos sin pagar a esa hora no entran a la compra del viernes.`,`Si un producto llega en mal estado, avísame ese mismo día con una foto: se descuenta y te devuelvo su valor.`,`Congelados: guárdalos en el freezer apenas los recibas.`].map(t=>`<li>${esc(t)}</li>`).join("");
+$("stamp").textContent=`Precios con IVA, vigentes al ${PRECIOS_AL}. Se revisan automáticamente cada mañana; el precio que ves al pedir es el que pagas.`;
+$("how").innerHTML=[`Pedidos hasta el ${CIERRE}; entrega el ${fdate} ${HORARIO}.`,`Pedido mínimo ${clp(MINIMO)} en productos.`,`Despacho según la distancia a tu comuna: desde ${clp(DESP_MIN)}; sobre ${DESP_MAX_KM} km se coordina.`,`Pagas por transferencia al enviar tu pedido, hasta el ${PAGO_HASTA}. Los pedidos sin pagar a esa hora no entran a la compra del viernes.`,`El precio que ves al pedir es el que pagas, aunque cambie antes de la compra.`,`Si un producto falta el viernes, te devuelvo ese monto el mismo día.`,`Si un producto llega en mal estado, avísame ese mismo día con una foto: te devuelvo su valor.`,`Congelados: guárdalos en el freezer apenas los recibas.`].map(t=>`<li>${esc(t)}</li>`).join("");
 
 // comunas, pago, código
 $("cComuna").innerHTML=`<option value="">Comuna</option>`+Object.keys(KM).sort((a,b)=>a.localeCompare(b,"es")).map(c=>`<option>${c}</option>`).join("")+`<option value="otra">Otra comuna</option>`;
 const who=ls.get("pdv-who",{});$("cNombre").value=who.n||"";$("cComuna").value=who.c||"";$("cDir").value=who.a||"";
-if(who.p==="mp")$("pagoMp").checked=true;else if(who.p==="tr")$("pagoTr").checked=true;
+$("pagoTr").checked=true;
 const hasBank=!!(BANCO.cuenta&&BANCO.rut);
-$("trTxt").textContent=hasBank?`a mi cuenta del ${BANCO.banco}. Transfieres el total confirmado y me envías el comprobante.`:"te envío los datos al confirmar tu pedido. Transfieres el total y me mandas el comprobante de tu banco.";
+$("trTxt").textContent=hasBank?`a mi cuenta del ${BANCO.banco}. Transfieres el total de tu pedido y me envías el comprobante.`:"te envío los datos al confirmar tu pedido. Transfieres el total y me mandas el comprobante de tu banco.";
 document.querySelectorAll(".pHasta").forEach(e=>e.textContent=PAGO_HASTA);
 const BANK_TXT=hasBank?`${BANCO.titular}\nRUT ${BANCO.rut}\n${BANCO.banco}\n${BANCO.tipo}\nN.º ${BANCO.cuenta}\n${BANCO.correo}`:"";
-function renderBank(){const b=$("bank");if(!hasBank||pago()!=="tr"){b.hidden=true;return}b.hidden=false;b.innerHTML=`<div class="rc-h">Datos para transferir</div><dl>${[["Titular",BANCO.titular],["RUT",BANCO.rut],["Banco",BANCO.banco],["Tipo",BANCO.tipo],["Cuenta",BANCO.cuenta],["Correo",BANCO.correo]].filter(x=>x[1]).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl><button class="ghost" id="copyBank" type="button">Copiar datos</button><p class="note">Transfiere solo cuando te confirme el total, antes del ${PAGO_HASTA}.</p>`;$("copyBank").onclick=()=>navigator.clipboard.writeText(BANK_TXT).then(()=>toast("Datos copiados"),()=>toast("No se pudo copiar"))}
+function renderBank(){const b=$("bank");if(!hasBank||pago()!=="tr"){b.hidden=true;return}b.hidden=false;b.innerHTML=`<div class="rc-h">Datos para transferir</div><dl>${[["Titular",BANCO.titular],["RUT",BANCO.rut],["Banco",BANCO.banco],["Tipo",BANCO.tipo],["Cuenta",BANCO.cuenta],["Correo",BANCO.correo]].filter(x=>x[1]).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl><button class="ghost" id="copyBank" type="button">Copiar datos</button><p class="note">Transfiere el total de tu pedido hasta el ${PAGO_HASTA} y pon tu código de pedido en el comentario.</p>`;$("copyBank").onclick=()=>navigator.clipboard.writeText(BANK_TXT).then(()=>toast("Datos copiados"),()=>toast("No se pudo copiar"))}
 let code=ls.get("pdv-code","");function newCode(){const d=new Date();code="PV-"+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"-"+Math.random().toString(36).slice(2,5).toUpperCase();ls.set("pdv-code",code)}
 if(!code)newCode();
 function feeOf(c){if(!c)return{fee:0,state:"none"};if(c==="otra")return{fee:0,state:"coord"};const km=KM[c];if(km==null||km>DESP_MAX_KM)return{fee:0,state:"coord",km};
@@ -393,7 +392,7 @@ function orderText(){const{t,fee,F}=totals();let s=`Hola Esteban! Quiero hacer e
   cats.forEach(c=>{s+=`\n*${c}*\n`;ids.filter(id=>BY[id].cat===c).forEach(id=>{const p=BY[id];s+=`• ${cart[id]} × ${p.n} · ${p.u} — ${clp(cart[id]*p.pv)} [${id}]\n`})});
   s+=`\nProductos: ${clp(t)}\nDespacho: ${F.state==="ok"?clp(fee)+` (~${F.km} km)`:"a coordinar"}\n*Total: ${clp(t+fee)}${F.state==="ok"?"":" + despacho"}*\n`;
   const cm=$("cComuna").value;
-  s+=`\nCódigo de pedido: ${code}\nPago: ${pago()==="mp"?"Mercado Pago (envíame el link)":"Transferencia"}\nNombre: ${$("cNombre").value.trim()}\nComuna: ${cm==="otra"?"Otra (a coordinar)":cm}\nDirección: ${$("cDir").value.trim()}\n`;return s}
+  s+=`\nCódigo de pedido: ${code}\nPago: Transferencia\nNombre: ${$("cNombre").value.trim()}\nComuna: ${cm==="otra"?"Otra (a coordinar)":cm}\nDirección: ${$("cDir").value.trim()}\n`;return s}
 function renderCart(){const ids=Object.keys(cart);renderBank();
   $("lines").innerHTML=ids.length?[...new Set(ids.map(id=>BY[id].cat))].map(c=>`<div class="grp">${esc(c)}</div>`+ids.filter(id=>BY[id].cat===c).map(id=>{const p=BY[id];return `<div class="row" data-row="${id}"><div class="info"><div class="nm">${esc(p.n)}</div><div class="u">${esc(p.u)} · ${clp(p.pv)} c/u</div></div><div class="right"><div class="pr">${clp(cart[id]*p.pv)}</div><div class="ctl">${ctl(id)}</div></div></div>`}).join("")).join("")
     :`<p class="empty">Aún no agregas productos.</p>`;
@@ -402,7 +401,7 @@ function renderCart(){const ids=Object.keys(cart);renderBank();
   const mw=$("minwarn");
   if(n&&!ok){mw.hidden=false;mw.innerHTML=`Te faltan <b>${clp(MINIMO-t)}</b> para el pedido mínimo de ${clp(MINIMO)}.<div class="meter"><i style="width:${Math.min(100,t/MINIMO*100)}%"></i></div>`}
   else if(n&&falta.length){mw.hidden=false;mw.textContent="Para enviar falta: "+falta.join(", ")+"."}
-  else if(n&&F.state==="coord"){mw.hidden=false;mw.textContent="Tu comuna está a más de "+DESP_MAX_KM+" km: el despacho lo coordinamos por WhatsApp antes de pagar."}
+  else if(n&&F.state==="coord"){mw.hidden=false;mw.textContent="Tu comuna está a más de "+DESP_MAX_KM+" km: el despacho lo coordinamos por WhatsApp. Transfiere los productos y el despacho lo pagas aparte."}
   else mw.hidden=true;
   const can=n&&ok&&!falta.length;
   const fld=!$("cNombre").value.trim()?"cNombre":!$("cComuna").value?"cComuna":!$("cDir").value.trim()?"cDir":!pago()?"pagoTr":"";
@@ -417,8 +416,8 @@ function showReceipt(){const{t,fee,F}=totals();const p=pago();
   <div class="rc-row"><span>Total</span><b>${clp(t+fee)}${F.state==="ok"?"":" + despacho"}</b></div>
   <div class="rc-row"><span>Entrega</span><b>${esc(fdate)}</b></div>
   <ol class="rc-steps"><li>Envía el mensaje en WhatsApp (si no se abrió, usa "Copiar").</li>
-  <li>Te confirmo el total y la disponibilidad. Todavía no pagas nada.</li>
-  <li>${p==="mp"?"Te llega un link de Mercado Pago por el total; al pagar, Mercado Pago te envía el comprobante.":"Transfieres el total confirmado"+(hasBank?` a ${esc(BANCO.banco)}, ${esc(BANCO.tipo)} ${esc(BANCO.cuenta)}, RUT ${esc(BANCO.rut)}`:"")+" y me mandas el comprobante."} Hazlo antes del <b>${PAGO_HASTA}</b> y pon el código <b>${code}</b> en el comentario.</li></ol>
+  <li>Transfiere <b>${clp(t+fee)}</b>${F.state==="ok"?"":" (solo productos; el despacho lo coordinamos)"}${hasBank?` a ${esc(BANCO.titular)}, ${esc(BANCO.banco)}, ${esc(BANCO.tipo)} ${esc(BANCO.cuenta)}, RUT ${esc(BANCO.rut)}`:""}, hasta el <b>${PAGO_HASTA}</b>. Pon el código <b>${code}</b> en el comentario.</li>
+  <li>Mándame el comprobante por WhatsApp. Si el viernes falta algo, te devuelvo ese monto.</li></ol>
   <p class="note">Guarda esta pantalla con una captura.</p>
   <button class="ghost" id="newOrder" style="width:100%">Hacer otro pedido</button>`;
   $("receipt").scrollIntoView({block:"nearest"});
