@@ -1,13 +1,9 @@
-# Actualización 2026-10-28
+# Actualización 2026-10-29
 
-Productos visibles en el catálogo: **305**
+Productos visibles en el catálogo: **303**
 
-## Precios de venta actualizados
+## Ocultos por agotados o retirados
 
-| Producto | Antes | Ahora | Cambio proveedor |
-|---|---|---|---|
-| Carne desmechada casera Vida Estable 1,2 kg (Pouch) | $18.890 | $21.590 | +14.2 % |
-| Queso de cabra Don Humberto de Ovalle (1 kg) | $13.690 | $13.190 | -4.2 % |
-| Aceite maravilla Camilo Ferrón 10 l (Bidón) | $27.790 | $28.390 | +1.8 % |
-| Aceite maravilla Maxi Frits 10 l (Bidón) | $29.390 | $30.390 | +3.1 % |
+- Merluza filete nacional (Bolsa de 1 kg) — Ártico Congelados
+- Mini merengue (Envase de 300 g) — El Palomo
 

@@ -752,7 +752,7 @@
 "s": "A",
 "k": "Merluza filete nacional 1 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-12b3d",
@@ -3112,7 +3112,7 @@
 "s": "P",
 "k": "Mini merengue 300 grs",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-53c7a",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-10-28"
+"updated": "2026-10-29"
 }
