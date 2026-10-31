@@ -1,12 +1,8 @@
-# Actualización 2026-10-30
+# Actualización 2026-10-31
 
-Productos visibles en el catálogo: **303**
+Productos visibles en el catálogo: **302**
 
 ## Ocultos por agotados o retirados
 
-- Papas prefritas Farm Frites C12 (Bolsa de 2 kg) — Ártico Congelados
-
-## Volvieron a estar disponibles
-
-- Mini merengue (Envase de 300 g)
+- Cuchufli bañado en chocolate (Bandeja de 50 unidades) — El Palomo
 

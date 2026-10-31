@@ -3086,7 +3086,7 @@
 "s": "P",
 "k": "Cuchufli bañado en chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-3572a",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-10-30"
+"updated": "2026-10-31"
 }
