@@ -6,7 +6,7 @@
 "sub": "Blancos",
 "n": "Huevos jumbo blanco",
 "u": "Bandeja de 20 huevos",
-"pv": 6290,
+"pv": 5790,
 "cmp": {
 "txt": "Calibre jumbo: no se encuentra en supermercados",
 "d": "2026-10-27"
@@ -22,7 +22,7 @@
 "sub": "Blancos",
 "n": "Huevos jumbo blanco",
 "u": "Caja cerrada de 100 huevos",
-"pv": 29090,
+"pv": 26590,
 "cmp": null,
 "s": "R",
 "k": "Huevos Jumbo Blanco",
@@ -65,7 +65,7 @@
 "sub": "Blancos",
 "n": "Huevos súper especial blanco",
 "u": "Bandeja de 30 huevos",
-"pv": 7290,
+"pv": 6890,
 "cmp": {
 "txt": "Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u ($8.790 la bandeja de 30)",
 "d": "2026-10-27",
@@ -82,7 +82,7 @@
 "sub": "Blancos",
 "n": "Huevos súper especial blanco",
 "u": "Caja cerrada de 180 huevos",
-"pv": 40390,
+"pv": 37990,
 "cmp": null,
 "s": "R",
 "k": "Huevos Super Blanco Especial",
@@ -95,7 +95,7 @@
 "sub": "De color",
 "n": "Huevos jumbo color",
 "u": "Bandeja de 20 huevos",
-"pv": 6290,
+"pv": 5790,
 "cmp": {
 "txt": "Calibre jumbo: no se encuentra en supermercados",
 "d": "2026-10-27"
@@ -111,7 +111,7 @@
 "sub": "De color",
 "n": "Huevos jumbo color",
 "u": "Caja cerrada de 100 huevos",
-"pv": 29090,
+"pv": 26590,
 "cmp": null,
 "s": "R",
 "k": "Huevos Jumbo Color",
@@ -124,7 +124,7 @@
 "sub": "De color",
 "n": "Huevos súper especial color",
 "u": "Bandeja de 30 huevos",
-"pv": 7290,
+"pv": 6890,
 "cmp": {
 "txt": "Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u ($8.790 la bandeja de 30)",
 "d": "2026-10-27",
@@ -141,7 +141,7 @@
 "sub": "De color",
 "n": "Huevos súper especial color",
 "u": "Caja cerrada de 180 huevos",
-"pv": 40390,
+"pv": 37990,
 "cmp": null,
 "s": "R",
 "k": "Huevos Super Color Especial",
@@ -3021,7 +3021,7 @@
 "s": "P",
 "k": "Caribeño coco 1.5 kilos",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-6131f",
@@ -3086,7 +3086,7 @@
 "s": "P",
 "k": "Cuchufli bañado en chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-3572a",
@@ -3268,7 +3268,7 @@
 "s": "P",
 "k": "Mani confitado capuccino kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-361d2",
@@ -3450,7 +3450,7 @@
 "s": "P",
 "k": "Mix tropical frutos secos x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-32beb",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-01"
+"updated": "2026-11-02"
 }
