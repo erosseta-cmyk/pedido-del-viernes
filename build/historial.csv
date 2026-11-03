@@ -11,3 +11,4 @@ fecha,dia,distribuidora,producto,unidad,cambio_proveedor_pct,precio_venta_antes,
 2026-11-02,lunes,Río Maipo,"Huevos jumbo color","Caja cerrada de 100 huevos",-8.9,29090,26590,aplicado
 2026-11-02,lunes,Río Maipo,"Huevos súper especial color","Bandeja de 30 huevos",-6.1,7290,6890,aplicado
 2026-11-02,lunes,Río Maipo,"Huevos súper especial color","Caja cerrada de 180 huevos",-6.1,40390,37990,aplicado
+2026-11-03,martes,Todas,"Todos los productos","—",+0.0,,,"ajuste +3 % por comisión de tarjeta (promedio 2,98 %)"

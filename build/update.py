@@ -107,7 +107,7 @@ def save_base(b):
 
 # ---------- precio ----------
 def round90(x):
-    if x < 1000:
+    if x < 3000:
         return int(math.ceil(x / 10) * 10)
     return int(math.ceil((x - 90) / 100) * 100 + 90)
 

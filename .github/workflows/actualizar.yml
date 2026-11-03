@@ -2,10 +2,10 @@ name: Actualizar precios
 
 on:
   schedule:
-    # Todos los días a las 09:00 de Chile. GitHub usa hora UTC y Chile cambia de horario,
-    # así que se programa a las 12:07 y 13:07 UTC y el paso de abajo deja correr solo la
-    # primera que caiga desde las 9:00 de Chile (una vez por día).
-    - cron: '7 12 * * *'
+    # GitHub atrasa las tareas programadas (a veces 4-6 horas). Se programan 3 intentos
+    # (06:07, 08:07 y 10:07 de Chile en verano); corre solo el primero que llegue cada día.
+    - cron: '7 9 * * *'
+    - cron: '7 11 * * *'
     - cron: '7 13 * * *'
   workflow_dispatch:
     inputs:
@@ -43,7 +43,7 @@ jobs:
           if [ "$EVENTO" = "schedule" ]; then
             H=$(date +%H); HOY=$(date +%F)
             ULT=$(python -c "import json;print(json.load(open('build/catalog.json'))['updated'])")
-            if [ "$H" -lt 9 ] || [ "$ULT" = "$HOY" ]; then echo "Hoy ya se actualizó o aún no son las 9:00 en Chile ($H h)"; exit 0; fi
+            if [ "$H" -lt 5 ] || [ "$ULT" = "$HOY" ]; then echo "Hoy ya se actualizó ($ULT) o es muy temprano ($H h)"; exit 0; fi
           fi
           case "$MODO" in
             solo-pagina) python build/update.py --render ;;
