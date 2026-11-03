@@ -2965,7 +2965,7 @@
 "s": "P",
 "k": "Almendra entera x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-c21e2",
@@ -2982,7 +2982,7 @@
 "s": "P",
 "k": "Nuez mariposa x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-844ff",
@@ -3073,7 +3073,7 @@
 "s": "P",
 "k": "Cuchufli 90 uni aprox x bandeja",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-89ffc",
@@ -3268,7 +3268,7 @@
 "s": "P",
 "k": "Mani confitado capuccino kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-361d2",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-02"
+"updated": "2026-11-03"
 }
