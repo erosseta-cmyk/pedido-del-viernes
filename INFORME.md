@@ -1,14 +1,14 @@
-# Actualización 2026-11-03
+# Actualización 2026-11-04
 
 Productos visibles en el catálogo: **298**
 
 ## Ocultos por agotados o retirados
 
-- Almendra entera (Por kilo, a granel) — El Palomo
-- Nuez mariposa (Por kilo, a granel) — El Palomo
-- Cuchufli (Bandeja de aprox. 90 unidades) — El Palomo
+- Carne molida Super Beef (Unidad de 250 g) — Ártico Congelados
+- Carne molida Super Beef (Pack de 4 unidades de 250 g) — Ártico Congelados
 
 ## Volvieron a estar disponibles
 
-- Maní confitado capuccino (Por kilo, a granel)
+- Almendra entera (Por kilo, a granel)
+- Nuez mariposa (Por kilo, a granel)
 

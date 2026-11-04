@@ -566,7 +566,7 @@
 "s": "A",
 "k": "Carne molida Super Beef 250 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-6ef54",
@@ -579,7 +579,7 @@
 "s": "A",
 "k": "Carne molida Super Beef pack 4×250 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-d7ff0",
@@ -2965,7 +2965,7 @@
 "s": "P",
 "k": "Almendra entera x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-c21e2",
@@ -2982,7 +2982,7 @@
 "s": "P",
 "k": "Nuez mariposa x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-844ff",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-03"
+"updated": "2026-11-04"
 }
