@@ -1,14 +1,15 @@
-# Actualización 2026-11-04
+# Actualización 2026-11-05
 
-Productos visibles en el catálogo: **298**
+Productos visibles en el catálogo: **299**
 
-## Ocultos por agotados o retirados
+## Precios de venta actualizados
 
-- Carne molida Super Beef (Unidad de 250 g) — Ártico Congelados
-- Carne molida Super Beef (Pack de 4 unidades de 250 g) — Ártico Congelados
+| Producto | Antes | Ahora | Cambio proveedor |
+|---|---|---|---|
+| Mantequilla La Vaquita (Unidad de 250 g) | $2.770 | $3.190 | +14.7 % |
+| Queso laminado chanco La Vaquita (Sachet de 400 g) | $4.390 | $4.590 | +2.9 % |
 
 ## Volvieron a estar disponibles
 
-- Almendra entera (Por kilo, a granel)
-- Nuez mariposa (Por kilo, a granel)
+- Mix tropical frutos secos (Por kilo, a granel)
 

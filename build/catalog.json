@@ -2215,7 +2215,7 @@
 "sub": "Mantequilla",
 "n": "Mantequilla La Vaquita",
 "u": "Unidad de 250 g",
-"pv": 2770,
+"pv": 3190,
 "cmp": null,
 "s": "R",
 "k": "Mantequilla La Vaquita 250 grs.",
@@ -2813,7 +2813,7 @@
 "sub": "Quesos laminados",
 "n": "Queso laminado chanco La Vaquita",
 "u": "Sachet de 400 g",
-"pv": 4390,
+"pv": 4590,
 "cmp": null,
 "s": "R",
 "k": "Queso Laminado Chanco La Vaquita 400 g",
@@ -3450,7 +3450,7 @@
 "s": "P",
 "k": "Mix tropical frutos secos x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-32beb",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-04"
+"updated": "2026-11-05"
 }
