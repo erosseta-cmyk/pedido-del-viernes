@@ -527,7 +527,7 @@
 "s": "A",
 "k": "Pino casero Vida Estable 3 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-e7e7e",
@@ -3073,7 +3073,7 @@
 "s": "P",
 "k": "Cuchufli 90 uni aprox x bandeja",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-89ffc",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-05"
+"updated": "2026-11-06"
 }

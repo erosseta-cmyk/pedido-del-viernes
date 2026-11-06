@@ -1,15 +1,12 @@
-# Actualización 2026-11-05
+# Actualización 2026-11-06
 
 Productos visibles en el catálogo: **299**
 
-## Precios de venta actualizados
+## Ocultos por agotados o retirados
 
-| Producto | Antes | Ahora | Cambio proveedor |
-|---|---|---|---|
-| Mantequilla La Vaquita (Unidad de 250 g) | $2.770 | $3.190 | +14.7 % |
-| Queso laminado chanco La Vaquita (Sachet de 400 g) | $4.390 | $4.590 | +2.9 % |
+- Pino casero Vida Estable (Pouch de 3 kg) — Ártico Congelados
 
 ## Volvieron a estar disponibles
 
-- Mix tropical frutos secos (Por kilo, a granel)
+- Cuchufli (Bandeja de aprox. 90 unidades)
 
