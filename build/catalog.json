@@ -1380,7 +1380,7 @@
 "s": "R",
 "k": "Papas Pre Fritas Farm Frites 10 mm 2,5 kilos",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-af94a",
@@ -1406,7 +1406,7 @@
 "s": "R",
 "k": "Papas Pre Fritas Frozenta 1 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-dd89a",
@@ -3203,7 +3203,7 @@
 "s": "P",
 "k": "Gomita culebras acidas docile x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-49a4c",
@@ -3333,7 +3333,7 @@
 "s": "P",
 "k": "Mani japones mixto kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-61749",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-06"
+"updated": "2026-11-07"
 }
