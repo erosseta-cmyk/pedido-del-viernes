@@ -1,5 +1,8 @@
-# Actualización 2026-11-08
+# Actualización 2026-11-09
 
-Productos visibles en el catálogo: **295**
+Productos visibles en el catálogo: **296**
 
-Sin cambios esta semana.
+## Volvieron a estar disponibles
+
+- Maní japonés mixto (Por kilo, a granel)
+

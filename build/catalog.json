@@ -3333,7 +3333,7 @@
 "s": "P",
 "k": "Mani japones mixto kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-61749",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-08"
+"updated": "2026-11-09"
 }
