@@ -65,7 +65,7 @@
 "sub": "Blancos",
 "n": "Huevos súper especial blanco",
 "u": "Bandeja de 30 huevos",
-"pv": 7090,
+"pv": 6390,
 "cmp": {
 "txt": "Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u ($8.790 la bandeja de 30)",
 "d": "2026-10-27",
@@ -82,7 +82,7 @@
 "sub": "Blancos",
 "n": "Huevos súper especial blanco",
 "u": "Caja cerrada de 180 huevos",
-"pv": 39090,
+"pv": 35090,
 "cmp": null,
 "s": "R",
 "k": "Huevos Super Blanco Especial",
@@ -124,7 +124,7 @@
 "sub": "De color",
 "n": "Huevos súper especial color",
 "u": "Bandeja de 30 huevos",
-"pv": 7090,
+"pv": 6390,
 "cmp": {
 "txt": "Calibre especial: el súper no lo tiene; su extra grande sale desde $293 c/u ($8.790 la bandeja de 30)",
 "d": "2026-10-27",
@@ -141,7 +141,7 @@
 "sub": "De color",
 "n": "Huevos súper especial color",
 "u": "Caja cerrada de 180 huevos",
-"pv": 39090,
+"pv": 35090,
 "cmp": null,
 "s": "R",
 "k": "Huevos Super Color Especial",
@@ -1367,7 +1367,7 @@
 "s": "R",
 "k": "Papas Pre Fritas Europ 2,5 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-c0142",
@@ -3034,7 +3034,7 @@
 "s": "P",
 "k": "Cholito domino x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-4a75b",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-09"
+"updated": "2026-11-10"
 }
