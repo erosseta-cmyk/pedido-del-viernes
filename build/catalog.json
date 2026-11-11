@@ -1246,7 +1246,7 @@
 "s": "A",
 "k": "Frambuesas enteras Minuto Verde 1 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-f33a7",
@@ -1644,7 +1644,7 @@
 "s": "A",
 "k": "Hamburguesa garbanzo Minuto Verde 100 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-2b9f5",
@@ -1657,7 +1657,7 @@
 "s": "A",
 "k": "Hamburguesa garbanzo Minuto Verde pack 5",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-7df77",
@@ -1800,7 +1800,7 @@
 "s": "A",
 "k": "Poroto verde Green Farm 1 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-9c4fc",
@@ -2285,7 +2285,7 @@
 "s": "R",
 "k": "Queso Mozzarella Corlasa 3,3 kg.",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-5f747",
@@ -2657,7 +2657,7 @@
 "sub": "Quesos en trozo",
 "n": "Queso de cabra Don Humberto de Ovalle",
 "u": "Por kilo",
-"pv": 13590,
+"pv": 12490,
 "cmp": null,
 "s": "R",
 "k": "Queso de Cabra Don Humberto de Ovalle",
@@ -3086,7 +3086,7 @@
 "s": "P",
 "k": "Cuchufli bañado en chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-3572a",
@@ -3203,7 +3203,7 @@
 "s": "P",
 "k": "Gomita culebras acidas docile x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-49a4c",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-10"
+"updated": "2026-11-11"
 }
