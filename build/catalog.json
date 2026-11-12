@@ -3042,7 +3042,7 @@
 "sub": "Chocolates y galletas",
 "n": "Cholito",
 "u": "Por kilo, a granel",
-"pv": 5690,
+"pv": 5990,
 "cmp": null,
 "s": "P",
 "k": "Cholito kilo",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-11"
+"updated": "2026-11-12"
 }
