@@ -1670,7 +1670,7 @@
 "s": "A",
 "k": "Hamburguesa lentejas Minuto Verde 100 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-4a13c",
@@ -1683,7 +1683,7 @@
 "s": "A",
 "k": "Hamburguesa lentejas Minuto Verde pack 5",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-f0b2b",
@@ -3042,7 +3042,7 @@
 "sub": "Chocolates y galletas",
 "n": "Cholito",
 "u": "Por kilo, a granel",
-"pv": 5990,
+"pv": 6390,
 "cmp": null,
 "s": "P",
 "k": "Cholito kilo",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-12"
+"updated": "2026-11-13"
 }
