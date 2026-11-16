@@ -3086,7 +3086,7 @@
 "s": "P",
 "k": "Cuchufli bañado en chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-3572a",
@@ -3281,7 +3281,7 @@
 "s": "P",
 "k": "Mani confitado tropical x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-1ff49",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-15"
+"updated": "2026-11-16"
 }

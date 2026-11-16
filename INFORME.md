@@ -1,10 +1,12 @@
-# Actualización 2026-11-15
+# Actualización 2026-11-16
 
 Productos visibles en el catálogo: **287**
 
-## Precios de venta actualizados
+## Ocultos por agotados o retirados
 
-| Producto | Antes | Ahora | Cambio proveedor |
-|---|---|---|---|
-| Mango cubo Green Farms (Bolsa de 1 kg) | $6.090 | $6.690 | +8.6 % |
+- Maní confitado tropical (Por kilo, a granel) — El Palomo
+
+## Volvieron a estar disponibles
+
+- Cuchufli bañado en chocolate (Bandeja de 50 unidades)
 
