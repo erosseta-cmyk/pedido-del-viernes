@@ -22,3 +22,10 @@ fecha,dia,distribuidora,producto,unidad,cambio_proveedor_pct,precio_venta_antes,
 2026-11-12,jueves,El Palomo,"Cholito","Por kilo, a granel",+4.4,5690,5990,aplicado
 2026-11-13,viernes,El Palomo,"Cholito","Por kilo, a granel",+6.2,5990,6390,aplicado
 2026-11-15,domingo,Ártico Congelados,"Mango cubo Green Farms","Bolsa de 1 kg",+8.6,6090,6690,aplicado
+2026-11-17,martes,Río Maipo,"Huevos primera blanco","Bandeja de 30 huevos",-8.7,5290,4890,aplicado
+2026-11-17,martes,Río Maipo,"Huevos primera blanco","Caja cerrada de 180 huevos",-8.7,28890,26390,aplicado
+2026-11-17,martes,Río Maipo,"Huevos súper especial blanco","Bandeja de 30 huevos",-10.1,6390,5790,aplicado
+2026-11-17,martes,Río Maipo,"Huevos súper especial blanco","Caja cerrada de 180 huevos",-10.1,35090,31590,aplicado
+2026-11-17,martes,Río Maipo,"Huevos súper especial color","Bandeja de 30 huevos",-10.1,6390,5790,aplicado
+2026-11-17,martes,Río Maipo,"Huevos súper especial color","Caja cerrada de 180 huevos",-10.1,35090,31590,aplicado
+2026-11-17,martes,Río Maipo,"Panko","Envase de 1 kg",+10.0,3690,4090,aplicado
