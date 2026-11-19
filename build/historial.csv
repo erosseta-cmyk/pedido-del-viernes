@@ -29,3 +29,6 @@ fecha,dia,distribuidora,producto,unidad,cambio_proveedor_pct,precio_venta_antes,
 2026-11-17,martes,Río Maipo,"Huevos súper especial color","Bandeja de 30 huevos",-10.1,6390,5790,aplicado
 2026-11-17,martes,Río Maipo,"Huevos súper especial color","Caja cerrada de 180 huevos",-10.1,35090,31590,aplicado
 2026-11-17,martes,Río Maipo,"Panko","Envase de 1 kg",+10.0,3690,4090,aplicado
+2026-11-19,jueves,Río Maipo,"Queso laminado gouda La Vaquita","4 paquetes de 250 g (1 kg)",+13.8,10890,12490,aplicado
+2026-11-19,jueves,Río Maipo,"Queso laminado mantecoso La Vaquita","4 paquetes de 250 g (1 kg)",+15.8,11890,13790,aplicado
+2026-11-19,jueves,El Palomo,"Cholito dominó","Por kilo, a granel",+8.5,5890,6390,aplicado

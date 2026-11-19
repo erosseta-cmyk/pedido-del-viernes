@@ -2865,7 +2865,7 @@
 "sub": "Quesos laminados",
 "n": "Queso laminado gouda La Vaquita",
 "u": "4 paquetes de 250 g (1 kg)",
-"pv": 10890,
+"pv": 12490,
 "cmp": null,
 "s": "R",
 "k": "Queso Laminado Gauda La Vaquita de 250 g “Gouda”",
@@ -2917,7 +2917,7 @@
 "sub": "Quesos laminados",
 "n": "Queso laminado mantecoso La Vaquita",
 "u": "4 paquetes de 250 g (1 kg)",
-"pv": 11890,
+"pv": 13790,
 "cmp": null,
 "s": "R",
 "k": "Queso Laminado Mantecoso La Vaquita de 250 g",
@@ -3029,12 +3029,12 @@
 "sub": "Chocolates y galletas",
 "n": "Cholito dominó",
 "u": "Por kilo, a granel",
-"pv": 5890,
+"pv": 6390,
 "cmp": null,
 "s": "P",
 "k": "Cholito domino x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-4a75b",
@@ -3242,7 +3242,7 @@
 "s": "P",
 "k": "Malva coco kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-31a0d",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-18"
+"updated": "2026-11-19"
 }
