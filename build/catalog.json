@@ -1449,7 +1449,7 @@
 "s": "A",
 "k": "Papas prefritas Farm Frites C12 2 kg",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-1bf7c",
@@ -3177,7 +3177,7 @@
 "s": "P",
 "k": "Gomita bananas docile x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-5718c",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-19"
+"updated": "2026-11-20"
 }
