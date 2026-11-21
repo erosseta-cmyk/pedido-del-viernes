@@ -1,12 +1,13 @@
-# Actualización 2026-11-20
+# Actualización 2026-11-21
 
-Productos visibles en el catálogo: **287**
+Productos visibles en el catálogo: **286**
 
 ## Ocultos por agotados o retirados
 
-- Gomitas bananas Docile (Por kilo, a granel) — El Palomo
+- Pistacho salado (Por kilo, a granel) — El Palomo
+- Mini merengue (Envase de 300 g) — El Palomo
 
 ## Volvieron a estar disponibles
 
-- Papas prefritas Farm Frites C12 (Bolsa de 2 kg)
+- Maní confitado tropical (Por kilo, a granel)
 

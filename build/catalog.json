@@ -3008,7 +3008,7 @@
 "s": "P",
 "k": "Pistacho salado kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-7466e",
@@ -3112,7 +3112,7 @@
 "s": "P",
 "k": "Mini merengue 300 grs",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-53c7a",
@@ -3281,7 +3281,7 @@
 "s": "P",
 "k": "Mani confitado tropical x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-1ff49",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-20"
+"updated": "2026-11-21"
 }
