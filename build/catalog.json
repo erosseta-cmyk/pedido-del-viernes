@@ -527,7 +527,7 @@
 "s": "A",
 "k": "Pino casero Vida Estable 3 kg",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-e7e7e",
@@ -566,7 +566,7 @@
 "s": "A",
 "k": "Carne molida Super Beef 250 g",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-6ef54",
@@ -579,7 +579,7 @@
 "s": "A",
 "k": "Carne molida Super Beef pack 4×250 g",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-d7ff0",
@@ -3008,7 +3008,7 @@
 "s": "P",
 "k": "Pistacho salado kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-7466e",
@@ -3112,7 +3112,7 @@
 "s": "P",
 "k": "Mini merengue 300 grs",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-53c7a",
@@ -3242,7 +3242,7 @@
 "s": "P",
 "k": "Malva coco kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-31a0d",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-22"
+"updated": "2026-11-23"
 }
