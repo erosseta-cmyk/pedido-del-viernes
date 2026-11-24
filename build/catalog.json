@@ -1163,7 +1163,7 @@
 "sub": "Frutas",
 "n": "Arándanos",
 "u": "Bolsa de 1 kg",
-"pv": 5990,
+"pv": 6390,
 "cmp": null,
 "s": "R",
 "k": "Arándanos",
@@ -1644,7 +1644,7 @@
 "s": "A",
 "k": "Hamburguesa garbanzo Minuto Verde 100 g",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-2b9f5",
@@ -1657,7 +1657,7 @@
 "s": "A",
 "k": "Hamburguesa garbanzo Minuto Verde pack 5",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-7df77",
@@ -1670,7 +1670,7 @@
 "s": "A",
 "k": "Hamburguesa lentejas Minuto Verde 100 g",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-4a13c",
@@ -1683,7 +1683,7 @@
 "s": "A",
 "k": "Hamburguesa lentejas Minuto Verde pack 5",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-f0b2b",
@@ -2358,7 +2358,7 @@
 "sub": "Para cocinar",
 "n": "Queso mozzarella Pampa Cheese argentino",
 "u": "Por kilo",
-"pv": 8190,
+"pv": 8890,
 "cmp": null,
 "s": "R",
 "k": "Queso Mozzarella Pampa Cheese Argentino",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-23"
+"updated": "2026-11-24"
 }
