@@ -1800,7 +1800,7 @@
 "s": "A",
 "k": "Poroto verde Green Farm 1 kg",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d1-9c4fc",
@@ -3216,7 +3216,7 @@
 "s": "P",
 "k": "Gomita moras docile x kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-808ab",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-24"
+"updated": "2026-11-25"
 }
