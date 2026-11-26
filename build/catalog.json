@@ -1012,7 +1012,7 @@
 "s": "A",
 "k": "Pechuga de pollo apanada Receta del Abuelo 120 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-45c13",
@@ -1025,7 +1025,7 @@
 "s": "A",
 "k": "Pechuga de pollo apanada Receta del Abuelo caja 26×120 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-2855f",
@@ -1038,7 +1038,7 @@
 "s": "A",
 "k": "Pechuga de pollo apanada Receta del Abuelo pack 5×120 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d1-1cf4f",
@@ -1380,7 +1380,7 @@
 "s": "R",
 "k": "Papas Pre Fritas Farm Frites 10 mm 2,5 kilos",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d2-af94a",
@@ -3216,7 +3216,7 @@
 "s": "P",
 "k": "Gomita moras docile x kilo",
 "kind": "price",
-"on": false
+"on": true
 },
 {
 "id": "d3-808ab",
@@ -3666,7 +3666,7 @@
 "sub": "Conservas",
 "n": "Panko",
 "u": "Envase de 1 kg",
-"pv": 4090,
+"pv": 3890,
 "cmp": null,
 "s": "R",
 "k": "Panko 1 kg",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-25"
+"updated": "2026-11-26"
 }
