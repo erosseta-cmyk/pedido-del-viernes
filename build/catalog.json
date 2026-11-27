@@ -2324,7 +2324,7 @@
 "s": "R",
 "k": "Queso Mozzarella Granulado La Vaquita 1 Kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-641c6",
@@ -2532,7 +2532,7 @@
 "s": "R",
 "k": "Salsa de Queso Cheddar 3 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-c7aaa",
@@ -2584,7 +2584,7 @@
 "s": "R",
 "k": "Queso Crema President 1,36 kg",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-ceb09",
@@ -2610,7 +2610,7 @@
 "s": "R",
 "k": "Queso Crema Schreiber 1,36 Kg.",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-ad28e",
@@ -2623,7 +2623,7 @@
 "s": "R",
 "k": "Queso Crema Zana Foods Reny Picot 1,36 Kg.",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-290f4",
@@ -2805,7 +2805,7 @@
 "s": "R",
 "k": "Queso Gauda Laminado President 400 g “Gouda”",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-2083c",
@@ -2831,7 +2831,7 @@
 "s": "R",
 "k": "Queso Laminado Gauda Fondi 500 g “Gouda”",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d2-c6eaf",
@@ -2948,7 +2948,7 @@
 "s": "R",
 "k": "Queso Mozzarella Laminado La Vaquita 500 g",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-aac04",
@@ -3086,7 +3086,7 @@
 "s": "P",
 "k": "Cuchufli bañado en chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-3572a",
@@ -3099,7 +3099,7 @@
 "s": "P",
 "k": "Cuchufli mixto chocolate 50 unidades x bandeja",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-ad5da",
@@ -3294,7 +3294,7 @@
 "s": "P",
 "k": "Mani frambuesa kilo",
 "kind": "price",
-"on": true
+"on": false
 },
 {
 "id": "d3-23873",
@@ -4026,5 +4026,5 @@
 "d3-05f87",
 "d3-3952d"
 ],
-"updated": "2026-11-26"
+"updated": "2026-11-27"
 }

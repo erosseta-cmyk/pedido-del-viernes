@@ -1,21 +1,18 @@
-# Actualización 2026-11-26
+# Actualización 2026-11-27
 
-Productos visibles en el catálogo: **295**
-
-## Precios de venta actualizados
-
-| Producto | Antes | Ahora | Cambio proveedor |
-|---|---|---|---|
-| Panko (Envase de 1 kg) | $4.090 | $3.890 | -6.1 % |
+Productos visibles en el catálogo: **284**
 
 ## Ocultos por agotados o retirados
 
-- Pechuga de pollo apanada Receta del Abuelo (Unidad de 120 g) — Ártico Congelados
-- Pechuga de pollo apanada Receta del Abuelo (Caja de 26 unidades de 120 g) — Ártico Congelados
-- Pechuga de pollo apanada Receta del Abuelo (Pack de 5 unidades de 120 g) — Ártico Congelados
-
-## Volvieron a estar disponibles
-
-- Papas prefritas Farm Frites 10 mm (Bolsa de 2,5 kg)
-- Gomitas moras Docile (Por kilo, a granel)
+- Queso mozzarella granulado La Vaquita (Envase de 1 kg) — Río Maipo
+- Salsa de queso cheddar (Por kilo · viene en envase de 3 kg, pide de a 3) — Río Maipo
+- Queso crema President (Envase de 1,36 kg) — Río Maipo
+- Queso crema Schreiber (Pieza de 1,36 kg) — Río Maipo
+- Queso crema Zana Foods Reny Picot (Pieza de 1,36 kg) — Río Maipo
+- Queso gouda laminado President (Sachet de 400 g) — Río Maipo
+- Queso laminado gouda Fondi (2 paquetes de 500 g (1 kg)) — Río Maipo
+- Queso mozzarella laminado La Vaquita (2 paquetes de 500 g (1 kg)) — Río Maipo
+- Cuchufli bañado en chocolate (Bandeja de 50 unidades) — El Palomo
+- Cuchufli mixto chocolate (Bandeja de 50 unidades) — El Palomo
+- Maní frambuesa (Por kilo, a granel) — El Palomo
 
